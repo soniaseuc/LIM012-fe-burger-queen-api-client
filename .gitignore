@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 # ignore all logs
 node_modules/node_modules/
 node_modules/
+=======
+<<<<<<< HEAD
+node_modules
+=======
+>>>>>>> 3c7741d4a901c272f44b1aeb40937f0aa9a0092e
+>>>>>>> c907c40995b94077263c0a39598bc6dd67e86365
 node_modules/
