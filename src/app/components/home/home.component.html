@@ -1,19 +1,13 @@
 <section>
-  <app-milogo [logoHijo]="logoPadre"></app-milogo>
 
-      <h1>
-        Hola, usuario por favor escoge una opcion:
-      </h1>
+  <app-navbar [hijoNavbar]="padreNavbar"></app-navbar>
+  <app-date [hijoDate]="padreDate"></app-date>
 
-    <ul>
-      <!-- <li routerLink="nav">navbar</li>
-      <li routerLink="breakfast">breakfast</li>
-      <li routerLink="register">register</li>-->
-      <button class= "options-button" routerLink="breakfast">Desayuno</button>
-      <button class= "options-button" routerLink="registrer">Almuerzo</button >
-      <button class= "options-button"  routerLink="orders">Pedidos</button >
-
-    </ul>
-    
+  <div class="breakfast-section-container">
+    <app-menu-list-products [hijoMenuListProducts]="padreMenuListProducts"></app-menu-list-products>
+    <app-bill-orders [hijoBillOrders]="padreBillOrders"></app-bill-orders>
     <router-outlet></router-outlet>
-  </section>
+  </div>
+
+</section>
+
