@@ -24,6 +24,9 @@ export class BillOrdersComponent implements OnInit {
   // public dateEntry: number = Date.now();
   // public totalQuantity: number;
   public subscription: any;
+  // total y products son para vaciar el resumen del pedido cuando envie pedido a cocina
+  public productInCar = [];
+  // total: number;
 
   constructor(
     private counterProductService: CounterProductsService,
@@ -38,14 +41,13 @@ export class BillOrdersComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.subscription = this.counterProductService.currentDataCart.subscribe(productInCar => {
-      if (productInCar) {
-        this.items = productInCar;
+    this.totalBill();
+    this.resetBill();
+    // this.subscription =
 
         // this.totalQuantity = productInCar.length;
-        this.totalPrice = productInCar.reduce((sum, current) => sum + (current.price * current.quantity), 0);
-      }
-    });
+    //   }
+    // });
   }
 
   // disminuir(item: any): void {
@@ -76,6 +78,19 @@ export class BillOrdersComponent implements OnInit {
     this.counterProductService.removeElementCart(product);
   }
 
+  totalBill(): void {
+    this.counterProductService.currentDataCart.subscribe(productInCar => {
+      if (productInCar) {
+        this.items = productInCar;
+        this.totalPrice = productInCar.reduce((sum, current) => sum + (current.price * current.quantity), 0);
+      }});
+  }
+
+  resetBill(): void {
+    this.totalPrice = 0;
+    this.productInCar = [];
+  }
+
   sendOrder(items): any {
     // const obj = {items: this.qty};
 
@@ -102,10 +117,12 @@ export class BillOrdersComponent implements OnInit {
       // dateEntry: this.dateEntry
     };
     console.log(this.order);
+    this.resetBill();
     this.productsService.sendOrder(this.order);
     // this.productsService.sendOrder(items);
     this.router.navigate(['/orders']);
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
+
 
     // setTimeout(() => {
     //   this.subscription.unsubscribe();
