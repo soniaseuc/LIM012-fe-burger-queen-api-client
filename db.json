@@ -35,6 +35,24 @@
         }
       ],
       "id": 3
+    },
+    {
+      "client": "farines",
+      "products": [
+        {
+          "qty": 2,
+          "idprod": "1",
+          "name": "Cafe",
+          "price": 5
+        },
+        {
+          "qty": 1,
+          "idprod": "3",
+          "name": "Jugo Natural",
+          "price": 7
+        }
+      ],
+      "id": 4
     }
   ]
 }
