@@ -1,9 +1,17 @@
+<<<<<<< HEAD
     <!--<img alt="Angular Logo" class="logo" src="../../../../assets/logo.png"/>  -->
     <form>
+=======
+<section>
+  <img alt="Angular Logo" class="logo" src="https://carmenvictoriafarinez.github.io/LIM012-fe-burger-queen-api-client/assets/logo.png"/>
+  </section>
+
+    <form class="loginForm">
+>>>>>>> 4bfc4425e38a35ca3101c7ee950277c3686cc824
       <div class="warning-validator" *ngIf="isError">
         <strong> ⚠️ Por favor ingrese correctamente todos los campos </strong>
       </div>
-        <input class= "loginForm" type="email" [(ngModel)]="email" name="email" placeholder="Email"required="required"/>
-        <input class= "loginForm" type="password" [(ngModel)]="password" name="password" placeholder="Password" required="required"/>
+        <input class= "inputLoginForm" type="email" [(ngModel)]="email" name="email" placeholder="Email"required="required"/>
+        <input class= "inputLoginForm" type="password" [(ngModel)]="password" name="password" placeholder="Password" required="required"/>
         <button class= "loginForm-button" type="submit" (click)="login()">Ingresar</button>
       </form>

@@ -1,20 +1,21 @@
-@mixin button($ancho, $alto) {
-  width: $ancho;
-  height: $alto;
-}
-    
-.options-button {
-  @include button(328px, 80px);
+$blue: #071685;
+$blueTranspa: rgba(7, 22, 133, 0.5);
+$yellow: #F7B610;
+$yellowTranspa: rgba(247, 182, 16, 0.5);
+$red:  #E30D2C;
+$redTranspa: rgba(227, 13, 44, 0.5);
+$gray: #E3DED5;
+$grayTranspa: rgba(227, 222, 213, 0.5);
+
+.breakfast-section-container {
+  display: flex;
+  flex-direction: row;
 }
 
-.options-button {
-  display: flex;
-  background: #F7B610;
-  border: 10px solid #F7B610;
-  box-sizing: border-box;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 50px;
-  margin-top: 2%;
-  margin-left: 40%;
-  font-family: 'Bangers', cursive;
+$layout-breakpoint-tablet: 400px;
+// aqui todo lo modificado afecta la vista tablet
+@media (min-width: $layout-breakpoint-tablet) {
+  
+
 }
+
