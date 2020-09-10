@@ -335,13 +335,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var src_app_services_auth_config_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! src/app/services/auth-config.service */
+    "./src/app/services/auth-config.service.ts");
+    /* harmony import */
+
+
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! @angular/forms */
     "./node_modules/@angular/forms/__ivy_ngcc__/fesm2015/forms.js");
     /* harmony import */
 
 
-    var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! @angular/common */
     "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/common.js");
 
@@ -420,13 +426,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var BillOrdersComponent = /*#__PURE__*/function () {
       // total: number;
-      function BillOrdersComponent(counterProductService, productsService, router) {
+      function BillOrdersComponent(counterProductService, productsService, router, authConfigService) {
         _classCallCheck(this, BillOrdersComponent);
 
         // this.counterProductService.currentDataCart.subscribe(item => this.counter = item);
         this.counterProductService = counterProductService;
         this.productsService = productsService;
-        this.router = router; // total y products son para vaciar el resumen del pedido cuando envie pedido a cocina
+        this.router = router;
+        this.authConfigService = authConfigService; // total y products son para vaciar el resumen del pedido cuando envie pedido a cocina
 
         this.productInCar = []; // this.counterProductService.currentNumber.subscribe(numb => {
         //   this.counter = numb;
@@ -490,25 +497,45 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "sendOrder",
         value: function sendOrder(items) {
-          // const obj = {items: this.qty};
-          this.order = {
-            client: this.client,
-            products: items.map(function (prod) {
-              var obj = {
-                qty: prod.quantity,
-                idprod: prod._id,
-                name: prod.name,
-                price: prod.price
-              };
-              console.log(obj);
-              return obj;
-            })
-          };
-          console.log(this.order);
-          this.resetBill();
-          this.productsService.sendOrder(this.order); // this.productsService.sendOrder(items);
+          var _this2 = this;
 
-          this.router.navigate(['/orders']); // this.subscription.unsubscribe();
+          var userEmail = sessionStorage.getItem('emailCurrentUser');
+          this.authConfigService.getUser(userEmail).subscribe(function (userInfo) {
+            // console.log(userInfo, 'hola mundo');
+            _this2.order = {
+              client: _this2.client,
+              userId: userInfo._id,
+              products: items.map(function (prod) {
+                var obj = {
+                  qty: prod.quantity,
+                  productId: prod._id
+                }; // console.log(obj);
+
+                return obj;
+              })
+            };
+            console.log(_this2.order); // this.resetBill();
+
+            _this2.productsService.sendOrder(_this2.order);
+
+            _this2.counterProductService.cleanCart(); // this.productsService.sendOrder(items);
+            // this.router.navigate(['/orders']);
+            // this.subscription.unsubscribe();
+
+          }); // products: obj.items
+          // .map(item => {
+          //   this.qty = item.quantity,
+          //   this.productId = item._id;
+          // }),
+          // map para destructurar el obj
+          // status: this.status,
+          // dateEntry: this.dateEntry
+          // console.log(this.order);
+          // this.resetBill();
+          // this.productsService.sendOrder(this.order);
+          // // this.productsService.sendOrder(items);
+          // this.router.navigate(['/orders']);
+          // this.subscription.unsubscribe();
           // setTimeout(() => {
           //   this.subscription.unsubscribe();
           // }, 10000);
@@ -519,7 +546,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }();
 
     BillOrdersComponent.ɵfac = function BillOrdersComponent_Factory(t) {
-      return new (t || BillOrdersComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_counter_products_counter_products_service__WEBPACK_IMPORTED_MODULE_1__["CounterProductsService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_products_products_service__WEBPACK_IMPORTED_MODULE_2__["ProductsService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]));
+      return new (t || BillOrdersComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_counter_products_counter_products_service__WEBPACK_IMPORTED_MODULE_1__["CounterProductsService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_products_products_service__WEBPACK_IMPORTED_MODULE_2__["ProductsService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](src_app_services_auth_config_service__WEBPACK_IMPORTED_MODULE_4__["AuthConfigService"]));
     };
 
     BillOrdersComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
@@ -628,7 +655,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Precio total: S/.", ctx.totalPrice, "");
         }
       },
-      directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NgModel"], _angular_common__WEBPACK_IMPORTED_MODULE_5__["NgForOf"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["NumberValueAccessor"]],
+      directives: [_angular_forms__WEBPACK_IMPORTED_MODULE_5__["DefaultValueAccessor"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgControlStatus"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NgModel"], _angular_common__WEBPACK_IMPORTED_MODULE_6__["NgForOf"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__["NumberValueAccessor"]],
       styles: [".yellow-section-right[_ngcontent-%COMP%] {\n  margin-top: 11%;\n  margin-left: 2%;\n  width: 49vw;\n  height: 65vh;\n  background: rgba(247, 182, 16, 0.5);\n  box-sizing: border-box;\n  border-radius: 0px 30px 30px 0px;\n}\n\n.client-name-container[_ngcontent-%COMP%] {\n  width: 43vw;\n  height: 10%;\n  margin-left: 5%;\n  background: rgba(227, 222, 213, 0.5);\n  box-sizing: border-box;\n  border-radius: 0px 30px 30px 0px;\n}\n\n.client-info-select[_ngcontent-%COMP%] {\n  padding: 2%;\n}\n\n.table-products[_ngcontent-%COMP%] {\n  table-layout: fixed;\n  width: 85%;\n  padding-left: 15%;\n}\n\n.input-product-name[_ngcontent-%COMP%] {\n  width: 30%;\n}\n\n.product-resume-total[_ngcontent-%COMP%] {\n  width: 43vw;\n  height: 65%;\n  margin-left: 5%;\n  margin-top: 5%;\n  background: rgba(227, 222, 213, 0.5);\n  box-sizing: border-box;\n  border-radius: 0px 30px 30px 0px;\n}\n\n.total-amount[_ngcontent-%COMP%] {\n  width: 35%;\n  height: 7%;\n  margin-top: -10%;\n  margin-bottom: 5%;\n  margin-left: 30%;\n  background: rgba(227, 13, 44, 0.5);\n  border-radius: 0px 30px 30px 0px;\n  display: flex;\n  align-content: center;\n}\n\n.cancel-order[_ngcontent-%COMP%] {\n  width: 153px;\n  height: 64px;\n  margin-left: 15%;\n  margin-top: 2%;\n  background: #E30D2C;\n  border: 1px solid #E30D2C;\n  box-sizing: border-box;\n  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);\n  border-radius: 50px;\n}\n\n.send-order[_ngcontent-%COMP%] {\n  width: 222px;\n  height: 64px;\n  margin-left: 15%;\n  margin-top: 2%;\n  background: #F7B610;\n  border: 20px solid #F7B610;\n  box-sizing: border-box;\n  border-radius: 30px;\n}\n\n.delete[_ngcontent-%COMP%] {\n  font-size: 30px;\n  color: #1A1919;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9iaWxsLW9yZGVycy9iaWxsLW9yZGVycy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFVQTtFQUNFLGVBQUE7RUFDQSxlQUFBO0VBQ0EsV0FBQTtFQUNBLFlBQUE7RUFDQSxtQ0FaYztFQWFkLHNCQUFBO0VBQ0EsZ0NBQUE7QUFURjs7QUFZQTtFQUNFLFdBQUE7RUFDQSxXQUFBO0VBQ0EsZUFBQTtFQUNBLG9DQWpCWTtFQWtCWixzQkFBQTtFQUNBLGdDQUFBO0FBVEY7O0FBWUE7RUFDQSxXQUFBO0FBVEE7O0FBWUE7RUFDRSxtQkFBQTtFQUNBLFVBQUE7RUFDQSxpQkFBQTtBQVRGOztBQVlBO0VBQ0UsVUFBQTtBQVRGOztBQVlBO0VBQ0UsV0FBQTtFQUNBLFdBQUE7RUFDQSxlQUFBO0VBQ0EsY0FBQTtFQUVBLG9DQTFDWTtFQTJDWixzQkFBQTtFQUNBLGdDQUFBO0FBVkY7O0FBYUE7RUFFRSxVQUFBO0VBQ0EsVUFBQTtFQUVBLGdCQUFBO0VBQ0EsaUJBQUE7RUFDQSxnQkFBQTtFQUNBLGtDQXpEVztFQTJEWCxnQ0FBQTtFQUNBLGFBQUE7RUFDQSxxQkFBQTtBQWJGOztBQWdCQTtFQUNFLFlBQUE7RUFDQSxZQUFBO0VBQ0EsZ0JBQUE7RUFDQSxjQUFBO0VBQ0EsbUJBdEVLO0VBdUVMLHlCQUFBO0VBQ0Esc0JBQUE7RUFDQSwyQ0FBQTtFQUNBLG1CQUFBO0FBYkY7O0FBZ0JBO0VBQ0UsWUFBQTtFQUNBLFlBQUE7RUFDQSxnQkFBQTtFQUNBLGNBQUE7RUFDQSxtQkFwRk87RUFxRlAsMEJBQUE7RUFDQSxzQkFBQTtFQUNBLG1CQUFBO0FBYkY7O0FBZ0JBO0VBQ0UsZUFBQTtFQUNBLGNBdEZNO0FBeUVSIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9iaWxsLW9yZGVycy9iaWxsLW9yZGVycy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIiRibHVlOiAjMDcxNjg1O1xyXG4kYmx1ZVRyYW5zcGE6IHJnYmEoNywgMjIsIDEzMywgMC41KTtcclxuJHllbGxvdzogI0Y3QjYxMDtcclxuJHllbGxvd1RyYW5zcGE6IHJnYmEoMjQ3LCAxODIsIDE2LCAwLjUpO1xyXG4kcmVkOiAgI0UzMEQyQztcclxuJHJlZFRyYW5zcGE6IHJnYmEoMjI3LCAxMywgNDQsIDAuNSk7XHJcbiRncmF5OiAjRTNERUQ1O1xyXG4kZ3JheVRyYW5zcGE6IHJnYmEoMjI3LCAyMjIsIDIxMywgMC41KTtcclxuJG5lZ3JvOiAjMUExOTE5O1xyXG5cclxuLnllbGxvdy1zZWN0aW9uLXJpZ2h0IHtcclxuICBtYXJnaW4tdG9wOiAxMSU7XHJcbiAgbWFyZ2luLWxlZnQ6IDIlO1xyXG4gIHdpZHRoOiA0OXZ3O1xyXG4gIGhlaWdodDogNjV2aDtcclxuICBiYWNrZ3JvdW5kOiAkeWVsbG93VHJhbnNwYTsgIFxyXG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcbiAgYm9yZGVyLXJhZGl1czogMHB4IDMwcHggMzBweCAwcHg7XHJcbn1cclxuXHJcbi5jbGllbnQtbmFtZS1jb250YWluZXIge1xyXG4gIHdpZHRoOiA0M3Z3O1xyXG4gIGhlaWdodDogMTAlO1xyXG4gIG1hcmdpbi1sZWZ0OiA1JTtcclxuICBiYWNrZ3JvdW5kOiAkZ3JheVRyYW5zcGE7XHJcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxuICBib3JkZXItcmFkaXVzOiAwcHggMzBweCAzMHB4IDBweDtcclxufVxyXG5cclxuLmNsaWVudC1pbmZvLXNlbGVjdCB7XHJcbnBhZGRpbmc6IDIlO1xyXG59XHJcblxyXG4udGFibGUtcHJvZHVjdHN7XHJcbiAgdGFibGUtbGF5b3V0OiBmaXhlZDtcclxuICB3aWR0aDogODUlO1xyXG4gIHBhZGRpbmctbGVmdDogMTUlO1xyXG59XHJcblxyXG4uaW5wdXQtcHJvZHVjdC1uYW1le1xyXG4gIHdpZHRoOiAzMCU7XHJcbn1cclxuXHJcbi5wcm9kdWN0LXJlc3VtZS10b3RhbCB7ICBcclxuICB3aWR0aDogNDN2dztcclxuICBoZWlnaHQ6IDY1JTtcclxuICBtYXJnaW4tbGVmdDogNSU7XHJcbiAgbWFyZ2luLXRvcDogNSU7XHJcblxyXG4gIGJhY2tncm91bmQ6ICRncmF5VHJhbnNwYTtcclxuICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG4gIGJvcmRlci1yYWRpdXM6IDBweCAzMHB4IDMwcHggMHB4O1xyXG59XHJcblxyXG4udG90YWwtYW1vdW50IHtcclxuICAvLyBib3R0b206MjAlO1xyXG4gIHdpZHRoOiAzNSU7XHJcbiAgaGVpZ2h0OiA3JTtcclxuICAvLyBtYXJnaW4tdG9wOiA3NSU7XHJcbiAgbWFyZ2luLXRvcDogLTEwJTtcclxuICBtYXJnaW4tYm90dG9tOiA1JTtcclxuICBtYXJnaW4tbGVmdDogMzAlO1xyXG4gIGJhY2tncm91bmQ6ICRyZWRUcmFuc3BhO1xyXG4gIC8vIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICBib3JkZXItcmFkaXVzOiAwcHggMzBweCAzMHB4IDBweDtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGFsaWduLWNvbnRlbnQ6IGNlbnRlcjtcclxufVxyXG5cclxuLmNhbmNlbC1vcmRlciB7XHJcbiAgd2lkdGg6IDE1M3B4O1xyXG4gIGhlaWdodDogNjRweDtcclxuICBtYXJnaW4tbGVmdDogMTUlO1xyXG4gIG1hcmdpbi10b3A6IDIlO1xyXG4gIGJhY2tncm91bmQ6ICRyZWQ7XHJcbiAgYm9yZGVyOiAxcHggc29saWQgJHJlZDtcclxuICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG4gIGJveC1zaGFkb3c6IDBweCA0cHggNHB4IHJnYmEoMCwgMCwgMCwgMC4yNSk7XHJcbiAgYm9yZGVyLXJhZGl1czogNTBweDtcclxufVxyXG5cclxuLnNlbmQtb3JkZXIge1xyXG4gIHdpZHRoOiAyMjJweDtcclxuICBoZWlnaHQ6IDY0cHg7XHJcbiAgbWFyZ2luLWxlZnQ6IDE1JTtcclxuICBtYXJnaW4tdG9wOiAyJTtcclxuICBiYWNrZ3JvdW5kOiAkeWVsbG93O1xyXG4gIGJvcmRlcjogMjBweCBzb2xpZCAkeWVsbG93O1xyXG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcbiAgYm9yZGVyLXJhZGl1czogMzBweDtcclxufVxyXG5cclxuLmRlbGV0ZXtcclxuICBmb250LXNpemU6IDMwcHg7IFxyXG4gIGNvbG9yOiRuZWdybztcclxufSJdfQ== */"]
     });
     /*@__PURE__*/
@@ -648,6 +675,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           type: _services_products_products_service__WEBPACK_IMPORTED_MODULE_2__["ProductsService"]
         }, {
           type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
+        }, {
+          type: src_app_services_auth_config_service__WEBPACK_IMPORTED_MODULE_4__["AuthConfigService"]
         }];
       }, {
         hijoBillOrders: [{
@@ -1114,14 +1143,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var MenuListProductsComponent = /*#__PURE__*/function () {
       function MenuListProductsComponent(productsService, counterProductsService) {
-        var _this2 = this;
+        var _this3 = this;
 
         _classCallCheck(this, MenuListProductsComponent);
 
         this.productsService = productsService;
         this.counterProductsService = counterProductsService;
         this.counterProductsService.currentNumber.subscribe(function (product) {
-          _this2.counter = product;
+          _this3.counter = product;
         });
       }
 
@@ -1133,16 +1162,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getProducts",
         value: function getProducts(typeSelect) {
-          var _this3 = this;
+          var _this4 = this;
 
           this.productsService.getListProduct().subscribe(function (response) {
-            _this3.products = response;
+            _this4.products = response;
 
-            var breakfast = _this3.products.filter(function (products) {
+            var breakfast = _this4.products.filter(function (products) {
               return products.type === typeSelect;
             });
 
-            _this3.products = breakfast;
+            _this4.products = breakfast;
           });
         } // sum(id): void {
         //   const newNumber = this.counter + 1;
@@ -1589,7 +1618,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](product_r3.name);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](product_r3.product.name);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
@@ -1639,11 +1668,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(OrdersComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this4 = this;
+          var _this5 = this;
 
           this.productsService.kitchenOrders().subscribe(function (data) {
-            _this4.orders = data;
-            console.log(_this4.orders);
+            _this5.orders = data;
+            console.log(_this5.orders);
             /*this.showOrders = {
               order: data.forEach(element => {
                 console.log(element);
@@ -1927,7 +1956,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "login",
         value: function login() {
-          var _this5 = this;
+          var _this6 = this;
 
           var userLogged = 'invalid_form';
           this.user = {
@@ -1941,14 +1970,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.authConfigService.login(this.user).subscribe(function (data) {
             console.log(data); // sessionStorage.setItem('token', data.token);
 
-            _this5.authConfigService.setToken(data.token);
+            _this6.authConfigService.setToken(data.token);
 
             userLogged = 'login_valid';
 
-            _this5.router.navigate(['/home']); // this.menuListProductsComponent.getProducts('breakfast');
+            _this6.router.navigate(['/home']); // this.menuListProductsComponent.getProducts('breakfast');
 
           }, function (error) {
-            _this5.messageError();
+            _this6.messageError();
 
             userLogged = 'login_invalid';
           });
@@ -1957,11 +1986,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "messageError",
         value: function messageError() {
-          var _this6 = this;
+          var _this7 = this;
 
           this.isError = true;
           setTimeout(function () {
-            _this6.isError = false;
+            _this7.isError = false;
           }, 8000);
           console.log('Ops esto es un error');
         }
@@ -2313,10 +2342,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "setToken",
         value: function setToken(token) {
           return sessionStorage.setItem('token', token);
-        } // getUser(): any {  // no se usa ahora
-        //   return this.http.get(`${this.url}auth`); // read
-        // }
-        // getToken(): string { // no se usa ahora
+        }
+      }, {
+        key: "getUser",
+        value: function getUser(idUser) {
+          return this.http.get("".concat(this.url, "users/").concat(idUser)); // read
+        } // getToken(): string { // no se usa ahora
         //   return sessionStorage.get('token');
         // }
         // getUserLogged(): any { // no se usa ahora
@@ -2491,13 +2522,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this.numberSource = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](0);
         this.currentNumber = this.numberSource.asObservable(); // this.url = environment.apiUrl;
-      } // cuando seleccionas añadir: changeCart recibe el producto nuevo a añadir al carrito
-      // Esta función se encarga de recibir el item que debemos agregar al carrito,
-      // nos fijamos si ya existe aumentamos su cantidad,
-      // sino lo agregamos y volvemos a enviar el valor a todos los observers
-
+      }
 
       _createClass(CounterProductsService, [{
+        key: "cleanCart",
+        value: function cleanCart() {
+          this.cart.next([]);
+        } // cuando seleccionas añadir: changeCart recibe el producto nuevo a añadir al carrito
+        // Esta función se encarga de recibir el item que debemos agregar al carrito,
+        // nos fijamos si ya existe aumentamos su cantidad,
+        // sino lo agregamos y volvemos a enviar el valor a todos los observers
+
+      }, {
         key: "changeCart",
         value: function changeCart(newProduct) {
           var listCart = this.cart.getValue(); // Obtenemos el valor actual
@@ -2678,7 +2714,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(ProductsService, [{
         key: "sendOrder",
         value: function sendOrder(order) {
-          this.http.post('http://localhost:3000/orders', order).subscribe(function (data) {
+          this.http.post('https://burguerqueen-sc.herokuapp.com/orders', order).subscribe(function (data) {
             console.log(data);
           });
         }
@@ -2690,7 +2726,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "kitchenOrders",
         value: function kitchenOrders() {
-          return this.http.get('http://localhost:3000/orders');
+          return this.http.get('https://burguerqueen-sc.herokuapp.com/orders');
         }
       }]);
 
@@ -2749,7 +2785,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     var environment = {
       production: false,
-      apiUrl: 'http://127.0.0.1:8000/'
+      apiUrl: 'https://burguerqueen-sc.herokuapp.com/'
     };
     /*
      * For easier debugging in development mode, you can import the following file
