@@ -24,7 +24,9 @@ export class CounterProductsService {
     ) {
     // this.url = environment.apiUrl;
   }
-
+  cleanCart(): void {
+    this.cart.next([]);
+  }
   // cuando seleccionas añadir: changeCart recibe el producto nuevo a añadir al carrito
   // Esta función se encarga de recibir el item que debemos agregar al carrito,
   // nos fijamos si ya existe aumentamos su cantidad,
