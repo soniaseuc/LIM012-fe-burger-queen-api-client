@@ -10,9 +10,16 @@
     <app-food-orders [foodordersHijo]="foodordersPadre"></app-food-orders>
 
     <article class="container-pedido">
-        <p>PEDIDOS DE COCINA</p>
+        <p class="letraListado">PEDIDOS DE COCINA</p>
         <input class="btn-post-order" id="Entregado" type="checkbox">
         <label class="btn-post-order" for="Entregado">EN PROGRESO</label>
+
+        <table class="table-products">
+            <tr>
+              <th> PRODUCTOS </th>
+              <th> CANTIDAD </th>
+        </tr>
+       
 
         <div class="paintOrders" *ngFor="let order of orders">
             <p>{{order.client}}</p>
@@ -21,6 +28,6 @@
             <td>{{product.qty}}</td>
             </div> 
         </div> 
-
+    </table>
     </article>
 </section>
