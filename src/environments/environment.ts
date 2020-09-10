@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://appi-burger-queen-client.herokuapp.com/'
+  apiUrl: 'https://burguerqueen-sc.herokuapp.com/'
 };
 
 /*

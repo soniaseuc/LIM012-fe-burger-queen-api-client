@@ -31,7 +31,7 @@ export class ProductsService {
   //   this.listProducts.next(this.products);
   // }
   sendOrder(order: any): void{
-    this.http.post('https://appi-burger-queen-client.herokuapp.com/orders', order).subscribe(data => {
+    this.http.post('https://burguerqueen-sc.herokuapp.com/orders', order).subscribe(data => {
       console.log(data);
     });
   }
@@ -41,7 +41,7 @@ export class ProductsService {
   }
 
   kitchenOrders(): Observable<any> {
-    return this.http.get('https://appi-burger-queen-client.herokuapp.com/orders');
+    return this.http.get('https://burguerqueen-sc.herokuapp.com/orders');
 
   }
 }
