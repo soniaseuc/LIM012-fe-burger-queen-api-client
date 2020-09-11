@@ -19,9 +19,9 @@ export class AuthConfigService {
     this.url = environment.apiUrl;
   }
 
-  login(user: any): Observable<any> { // usandose
-    return this.http.post<any>(`${this.url}auth`, user); // create
-  }
+  // login(user: any): Observable<any> { // usandose
+  //   return this.http.post<any>(`${this.url}auth`, user); // create
+  // }
 
   setToken(token: string): void {  // usandose
     return sessionStorage.setItem('token', token);
@@ -31,8 +31,8 @@ export class AuthConfigService {
     return this.http.get(`${this.url}users/${idUser}`); // read
   }
 
-  checkUser(user): Observable<any> {
-    return this.http.post(`${this.url}auth`, user )
+  checkUser(user: any): Observable<any> {
+    return this.http.post<any>(`${this.url}auth`, user)
       .pipe(map(userLogged => {
             sessionStorage.setItem('currentUser', userLogged['token']);
             this.currentUserSubject.next(user);
@@ -52,5 +52,6 @@ export class AuthConfigService {
   logout(): void { // usandose
     sessionStorage.removeItem('currentUser');
     // sessionStorage.removeItem('emailCurrentUser');
+    // this.currentUserSubject.next(null);
   }
 }

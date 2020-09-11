@@ -1,9 +1,8 @@
-export class Users {
-    _id: number;
-    email: {
-        email: string;
+export class User {
+    "_id": number;
+    "email": string;
+    "roles": {
+        "admin": boolean
     };
-    roles: {
-        admin: boolean
-    };
+    "password": string
 }

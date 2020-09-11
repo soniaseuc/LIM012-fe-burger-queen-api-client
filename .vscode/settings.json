@@ -1,4 +1,7 @@
 {
+<<<<<<< HEAD
+    "git.ignoreLimitWarning": true
+=======
     "workbench.colorCustomizations": {
         "activityBar.activeBackground": "#2f7c47",
         "activityBar.activeBorder": "#422c74",
@@ -16,4 +19,5 @@
         "titleBar.inactiveForeground": "#e7e7e799"
     },
     "peacock.color": "#215732"
+>>>>>>> c907c40995b94077263c0a39598bc6dd67e86365
 }
