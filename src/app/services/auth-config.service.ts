@@ -23,9 +23,9 @@ export class AuthConfigService {
     return sessionStorage.setItem('token', token);
   }
 
-  // getUser(): any {  // no se usa ahora
-  //   return this.http.get(`${this.url}auth`); // read
-  // }
+  getUser(idUser): any { //peticion de user id
+    return this.http.get(`${this.url}users/${idUser}`); // read
+  }
 
   // getToken(): string { // no se usa ahora
   //   return sessionStorage.get('token');

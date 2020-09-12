@@ -1,28 +1,5 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 # ignore all logs
 node_modules/node_modules/
 node_modules/
-=======
->>>>>>> 2130cc1c51628425229b805d0af2f9337086ded4
-<<<<<<< HEAD
-node_modules
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-=======
->>>>>>> 3c7741d4a901c272f44b1aeb40937f0aa9a0092e
->>>>>>> c907c40995b94077263c0a39598bc6dd67e86365
-<<<<<<< HEAD
-node_modules/
->>>>>>> 857adb4c0dbe1a4a9df444c55e9a74ce504fa6b6
-=======
-# ignore all logs
-node_modules/node_modules/
-node_modules/
-=======
->>>>>>> 2130cc1c51628425229b805d0af2f9337086ded4
-node_modules/
->>>>>>> 580a16eba6f6927b11ff27a49ecddc365ec5f0fe
+
+
