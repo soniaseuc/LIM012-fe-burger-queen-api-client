@@ -4,6 +4,7 @@ import { Component, OnInit, Input, ɵConsole } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Item } from '../../interfaces/item';
 import { Router } from '@angular/router';
+import { AuthConfigService } from 'src/app/services/auth-config.service';
 
 @Component({
   selector: 'app-bill-orders',
@@ -31,7 +32,8 @@ export class BillOrdersComponent implements OnInit {
   constructor(
     private counterProductService: CounterProductsService,
     private productsService: ProductsService,
-    private router: Router
+    private router: Router,
+    public authConfigService: AuthConfigService
     ) {
     // this.counterProductService.currentDataCart.subscribe(item => this.counter = item);
 
@@ -92,21 +94,35 @@ export class BillOrdersComponent implements OnInit {
   }
 
   sendOrder(items): any {
-    // const obj = {items: this.qty};
-
-    this.order = { // orders obj products array
-      client: this.client,
-      products: items.map(prod => {
-        const obj = {
-          qty: prod.quantity,
-          idprod: prod._id,
-          name: prod.name,
-          price: prod.price
-        };
-        console.log(obj);
-        return obj;
+    const userEmail = sessionStorage.getItem('emailCurrentUser');
+    this.authConfigService.getUser(userEmail).subscribe(
+      userInfo => {
+        // console.log(userInfo, 'hola mundo');
+        this.order = { // orders obj products array
+          client: this.client,
+          userId: userInfo._id,
+          products: items.map(prod => {
+            const obj = {
+              qty: prod.quantity,
+              productId: prod._id,
+              // name: prod.name,
+              // price: prod.price
+            };
+            // console.log(obj);
+            return obj;
+          }
+            ),            
+          };
+        console.log(this.order);
+            // this.resetBill();
+            this.productsService.sendOrder(this.order);
+            this.counterProductService.cleanCart();
+            // this.productsService.sendOrder(items);
+            // this.router.navigate(['/orders']);
+            // this.subscription.unsubscribe();
       }
-        ),
+    );
+
       // products: obj.items
       // .map(item => {
       //   this.qty = item.quantity,
@@ -115,12 +131,12 @@ export class BillOrdersComponent implements OnInit {
       // map para destructurar el obj
       // status: this.status,
       // dateEntry: this.dateEntry
-    };
-    console.log(this.order);
-    this.resetBill();
-    this.productsService.sendOrder(this.order);
-    // this.productsService.sendOrder(items);
-    this.router.navigate(['/orders']);
+    
+    // console.log(this.order);
+    // this.resetBill();
+    // this.productsService.sendOrder(this.order);
+    // // this.productsService.sendOrder(items);
+    // this.router.navigate(['/orders']);
     // this.subscription.unsubscribe();
 
 
