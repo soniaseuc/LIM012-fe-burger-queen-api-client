@@ -22,6 +22,8 @@ import { DateComponent } from './components/date/date.component';
 import { BillOrdersComponent } from './components/bill-orders/bill-orders.component';
 import { MenuListProductsComponent } from './components/menu-list-products/menu-list-products.component';
 import { AuthGuardsService } from './Guards/auth-guards.service';
+import { UsersComponent } from './components/admin/users/users.component';
+import { ProductsComponent } from './components/admin/products/products.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { AuthGuardsService } from './Guards/auth-guards.service';
     FoodOrdersComponent,
     DateComponent,
     BillOrdersComponent,
-    MenuListProductsComponent
+    MenuListProductsComponent,
+    UsersComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,

@@ -16,13 +16,10 @@ export class AuthGuardsService implements CanActivate {
       map(user => {
         if (!user) {
           this.router.navigate(['/home']);
-          console.log(user);
           console.log(false);
           return false;
         }
-        console.log(true);
-        console.log(user);
-        this.router.navigate(['/home']);
+        this.router.navigate(['/users']);
         return true;
       })
     );
