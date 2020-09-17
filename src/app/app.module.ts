@@ -21,6 +21,7 @@ import { FoodOrdersComponent } from './components/food-orders/food-orders.compon
 import { DateComponent } from './components/date/date.component';
 import { BillOrdersComponent } from './components/bill-orders/bill-orders.component';
 import { MenuListProductsComponent } from './components/menu-list-products/menu-list-products.component';
+import { AuthGuardsService } from './Guards/auth-guards.service';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { MenuListProductsComponent } from './components/menu-list-products/menu-
     FormsModule
   ],
   providers: [
+    AuthGuardsService,
     {
       provide:  HTTP_INTERCEPTORS,
       useClass: ConfigcontrollerAuthService,

@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     console.log(this.user);
     // const property = JSON.stringify(this.user);
     // console.log(property);
-    this.authConfigService.login(this.user).subscribe(
+    this.authConfigService.checkUser(this.user).subscribe(
       data => {
         console.log(data);
         // sessionStorage.setItem('token', data.token);
