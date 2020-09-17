@@ -7,10 +7,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthGuardsService implements CanActivate {
-  public user: {
-    email: string,
-    password: string
-  };
+
 
   constructor(private authConfigService: AuthConfigService, private router: Router) { }
 
@@ -18,10 +15,14 @@ export class AuthGuardsService implements CanActivate {
     return this.authConfigService.currentUser.pipe(
       map(user => {
         if (!user) {
-          this.router.navigate(['/login']);
-          console.log(false)
+          this.router.navigate(['/home']);
+          console.log(user);
+          console.log(false);
           return false;
         }
+        console.log(true);
+        console.log(user);
+        this.router.navigate(['/home']);
         return true;
       })
     );
