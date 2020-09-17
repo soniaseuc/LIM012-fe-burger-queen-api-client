@@ -31,7 +31,7 @@ export class ProductsService {
   //   this.listProducts.next(this.products);
   // }
   sendOrder(order: any): void{
-    this.http.post('http://localhost:3000/orders', order).subscribe(data => {
+    this.http.post('https://burguerqueen-sc.herokuapp.com/orders', order).subscribe(data => {
       console.log(data);
     });
   }
@@ -41,7 +41,7 @@ export class ProductsService {
   }
 
   kitchenOrders(): Observable<any> {
-    return this.http.get('http://localhost:3000/orders');
+    return this.http.get('https://burguerqueen-sc.herokuapp.com/orders');
 
   }
 }
