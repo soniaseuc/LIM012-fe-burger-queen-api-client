@@ -19,7 +19,7 @@
 
 <div>
     <ul>
-        <li *ngFor= "let user of usersArray">
+        <li *ngFor= "let user of usersArray" (click)=openForEdit(user)>
             {{user._id}}
             {{user.email}}
             {{user.password}}
@@ -27,5 +27,8 @@
     </ul>
     <button (click)="addOrEdit()">
         Submit
+    </button>
+    <button *ngIf="selectedUsers._id !== 0" (click)="delete()">
+        Delete
     </button>
 </div>

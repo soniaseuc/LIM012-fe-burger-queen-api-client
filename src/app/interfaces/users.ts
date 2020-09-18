@@ -1,5 +1,5 @@
 export class User {
-    "_id": number;
+    "_id": number = 0;
     "email": string;
     "roles": {
         "admin": boolean
