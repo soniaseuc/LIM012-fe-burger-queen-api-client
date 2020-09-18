@@ -23,7 +23,8 @@ import { FoodOrdersComponent } from './components/food-orders/food-orders.compon
 import { DateComponent } from './components/date/date.component';
 import { BillOrdersComponent } from './components/bill-orders/bill-orders.component';
 import { MenuListProductsComponent } from './components/menu-list-products/menu-list-products.component';
-
+import { UsersComponent } from './components/admin/users/users.component';
+import { ProductsComponent } from './components/admin/products/products.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import { MenuListProductsComponent } from './components/menu-list-products/menu-
     FoodOrdersComponent,
     DateComponent,
     BillOrdersComponent,
-    MenuListProductsComponent
+    MenuListProductsComponent,
+    UsersComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule,

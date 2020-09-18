@@ -8,6 +8,8 @@ import { Page404Component } from './components/page404/page404.component';
 // import { RegisterComponent } from './components/user/register/register.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { AuthGuardsService } from './Guards/auth-guards.service';
+import { ProductsComponent } from './components/admin/products/products.component';
+import { UsersComponent } from './components/admin/users/users.component';
 
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
@@ -15,6 +17,8 @@ const appRoutes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuardsService] },
   {path: 'orders', component: OrdersComponent, canActivate: [AuthGuardsService] },
   {path: '**', component: Page404Component, canActivate: [AuthGuardsService] },
+  {path: 'products', component: ProductsComponent, canActivate: [AuthGuardsService] },
+  {path: 'users', component: UsersComponent, canActivate: [AuthGuardsService] },
 ];
 
 @NgModule({

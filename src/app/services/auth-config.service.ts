@@ -51,7 +51,7 @@ export class AuthConfigService {
 
   logout(): void { // usandose
     sessionStorage.removeItem('currentUser');
-    sessionStorage.removeItem('emailCurrentUser');
-    this.currentUserSubject.next(null);
+    // sessionStorage.removeItem('emailCurrentUser');
+    // this.currentUserSubject.next(null);
   }
 }
