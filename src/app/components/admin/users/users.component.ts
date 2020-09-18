@@ -30,13 +30,25 @@ export class UsersComponent implements OnInit {
 
   selectedUsers: User = new User();
 
+  openForEdit(user: User){
+    this.selectedUsers = user;
+  }
+
   addOrEdit(){
-    this.selectedUsers._id = this.usersArray.length + 1;
-    console.log(this.selectedUsers);
-    this.usersArray.push(this.selectedUsers);
-    this.selectedUsers = new User();    
+    if(this.selectedUsers._id === 0){
+      this.selectedUsers._id = this.usersArray.length + 1;
+      console.log(this.selectedUsers);
+      this.usersArray.push(this.selectedUsers);
+    }
+    // this.selectedUsers = new User();    
     console.log(this.usersArray);
   }
+
+  delete(){
+this.usersArray = this.usersArray.filter( x => x != this.selectedUsers);
+this.selectedUsers = new User();
+}
+
   constructor() { }
 
   ngOnInit(): void {
