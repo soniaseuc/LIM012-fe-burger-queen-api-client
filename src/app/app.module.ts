@@ -25,6 +25,7 @@ import { AuthGuardsService } from './Guards/auth-guards.service';
 import { UsersComponent } from './components/admin/users/users.component';
 import { ProductsComponent } from './components/admin/products/products.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,7 @@ import { ProductsComponent } from './components/admin/products/products.componen
     BillOrdersComponent,
     MenuListProductsComponent,
     UsersComponent,
-    ProductsComponent
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,

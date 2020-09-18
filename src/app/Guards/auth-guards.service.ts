@@ -15,11 +15,10 @@ export class AuthGuardsService implements CanActivate {
     return this.authConfigService.currentUser.pipe(
       map(user => {
         if (!user) {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/users']);
           console.log(false);
           return false;
         }
-        this.router.navigate(['/users']);
         return true;
       })
     );

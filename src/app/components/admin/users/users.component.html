@@ -1,1 +1,30 @@
-<p>users works!</p>
+<app-navbar></app-navbar>
+<app-date></app-date>
+
+<div>
+    <p> Añadir nuevo usuario</p>
+</div>
+
+<div class="form-group">
+<input type="number" [(ngModel)]= "selectedUsers._id" placeholder="Id usuario" class="form-control"/>
+</div>
+<div class="form-group">
+    <input type="text" [(ngModel)]= "selectedUsers.email" placeholder="Correo Usuario" class="form-control"/>
+</div>
+<div class="form-group">
+    <input type="text" [(ngModel)]= "selectedUsers.roles" placeholder=" Rol usuario" class="form-control"/>
+    </div>
+
+<div>
+    <ul>
+        <li *ngFor= "let users of usersArray">
+            {{users._id}}
+            {{users.email.email}}
+            {{users.roles.admin}}
+           
+        </li>
+    </ul>
+    <button (click)="addOrEdit()">
+        Submit
+    </button>
+</div>

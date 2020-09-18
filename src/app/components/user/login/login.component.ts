@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
         // sessionStorage.setItem('token', data.token);
         this.authConfigService.setToken(data.token);
         userLogged = 'login_valid';
-        this.router.navigate(['/home']);
+        this.router.navigate(['/users']);
         // this.menuListProductsComponent.getProducts('breakfast');
     },
       error => {
