@@ -14,7 +14,7 @@ export class AuthGuardsService implements CanActivate {
     return this.authConfigService.currentUser.pipe(
       map(user => {
         if (!user) {
-          this.router.navigate(['/users']);
+          this.router.navigate(['/home']);
           console.log(false);
           return false;
         }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { from } from 'rxjs';
-import { Users } from '../../../interfaces/users';
+import { User } from '../../../interfaces/users';
 import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 @Component({
@@ -11,19 +11,30 @@ import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 export class UsersComponent implements OnInit {
   @Input() hijoUsers: any;
 
-  usersArray: Users[] = [
-    { _id: 1, email: { email: 'admin.maria@test.com'}, roles: {admin: true}},
+  usersArray: User[] = [
+    { _id: 1, 
+      email: 'admin.maria@test.com', 
+      roles: {
+        admin: true
+      },
+      password: '123456',
+    },
+    { _id: 2, 
+      email: 'localhost@test.com', 
+      roles: {
+        admin: false
+      },
+      password: '123456',
+    },
   ];
 
-  selectedUsers: Users = new Users();
+  selectedUsers: User = new User();
 
   addOrEdit(){
     this.selectedUsers._id = this.usersArray.length + 1;
-
-    this.usersArray.push(this.selectedUsers);
-    this.selectedUsers = new Users();
-
     console.log(this.selectedUsers);
+    this.usersArray.push(this.selectedUsers);
+    this.selectedUsers = new User();    
     console.log(this.usersArray);
   }
   constructor() { }
