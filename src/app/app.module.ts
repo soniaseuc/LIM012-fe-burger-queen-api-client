@@ -26,6 +26,7 @@ import { MenuListProductsComponent } from './components/menu-list-products/menu-
 import { UsersComponent } from './components/admin/users/users.component';
 import { ProductsComponent } from './components/admin/products/products.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +41,7 @@ import { ProductsComponent } from './components/admin/products/products.componen
     BillOrdersComponent,
     MenuListProductsComponent,
     UsersComponent,
-    ProductsComponent
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
