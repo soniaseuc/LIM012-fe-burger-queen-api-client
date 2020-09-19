@@ -1,0 +1,81 @@
+$blue: #071685;
+$blueTranspa: rgba(7, 22, 133, 0.5);
+$yellow: #F7B610;
+$yellowTranspa: rgba(247, 182, 16, 0.5);
+$red:  #E30D2C;
+$redTranspa: rgba(227, 13, 44, 0.5);
+$gray: #E3DED5;
+$grayTranspa: rgba(227, 222, 213, 0.5);
+
+.admin-section-container {
+    width: 49vw;
+    height: 65vh;
+    margin-left: 1%;
+    margin-right: 0.5%;
+    background: $redTranspa;  
+    box-sizing: border-box;
+    border-radius: 30px 0px 0px 30px;
+}
+
+.containerII{
+    width: 49vw;
+    height: 65vh;
+    margin-left: 51%;
+    margin-right: 55%;
+    background: $redTranspa;  
+    box-sizing: border-box;
+    border-radius: 0px 30px 30px 0px;
+   
+}
+
+.letraListado{
+    width: 172px;
+    height: 48px;
+    margin-left: 30%;
+    font-family: Bangers;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 50px;
+    line-height: 64px;
+    color: $blue;
+    }
+
+.listado-users{
+    width: 320px;
+    height: 40px;
+    font-size: 20px;
+    color: black;
+    background: $blueTranspa;
+    opacity: 0.8;
+    border: 5px solid $blue;
+    border-radius: 30px;
+    text-align: center;
+}
+
+.section-btn {
+    margin: 30% 30%;
+    }
+
+    .btn-submit{
+    width: 110px;
+    height: 44px;
+    font-size: 25px;
+    border: 1px solid #F7B610;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    background-color: $yellow;
+    color: $blue;
+    text-align: center;
+
+    }
+
+
+
+
+$layout-breakpoint-tablet: 400px;
+// aqui todo lo modificado afecta la vista tablet
+@media (min-width: $layout-breakpoint-tablet) {
+  
+
+}

@@ -6,7 +6,7 @@ import {NgModule, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
   @Input() hijoUsers: any;

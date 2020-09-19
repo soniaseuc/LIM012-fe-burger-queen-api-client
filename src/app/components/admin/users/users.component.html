@@ -1,34 +1,36 @@
 <app-navbar></app-navbar>
 <app-date></app-date>
 
-<div>
-    <p> Añadir nuevo usuario</p>
+<section class="admin-section-container">
+
+<div >
+    <p class="letraListado"> Usuarios</p>
+    <p class="letraListado-sub"> Añade un usuario nuevo</p>
 </div>
 
-<!-- <div class="form-group">
-<input type="number" [(ngModel)]= "selectedUsers._id" placeholder="Id usuario" class="form-control"/>
-</div> -->
-<div class="form-group">
-    <input type="text" [(ngModel)]= "selectedUsers.email" placeholder="Correo Usuario" class="form-control"/>
-
-</div>
-<div class="form-group">
-        <input type="text" [(ngModel)]= "selectedUsers.password" placeholder=" contraseña usuario" class="form-control"/>
-
+<div >
+    <input type="text" [(ngModel)]= "selectedUsers.email" placeholder="Correo Usuario" />
 </div>
 
-<div>
-    <ul>
-        <li *ngFor= "let user of usersArray" (click)=openForEdit(user)>
-            {{user._id}}
-            {{user.email}}
-            {{user.password}}
-        </li>
-    </ul>
-    <button (click)="addOrEdit()">
-        Submit
-    </button>
-    <button *ngIf="selectedUsers._id !== 0" (click)="delete()">
-        Delete
-    </button>
+<div >
+    <input type="text" [(ngModel)]= "selectedUsers.password" placeholder=" contraseña usuario" />
 </div>
+
+
+<th >EMAIL</th>  
+<th>PASSWORD </th> 
+<div class="listado-users" *ngFor= "let user of usersArray" (click)=openForEdit(user)>
+   
+    <td>{{user._id}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.password}}</td>
+</div>
+
+<div class="section-btn ">
+    <button class="btn-submit"  (click)="addOrEdit()">Submit</button>
+    <button class ="btn-submit" (click)="delete()" >Delete</button>
+</div>
+</section>
+
+<section class="containerII">
+</section>
