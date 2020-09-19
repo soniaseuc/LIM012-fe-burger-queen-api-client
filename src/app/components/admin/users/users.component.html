@@ -20,15 +20,17 @@
 <div>
     <ul>
         <li *ngFor= "let user of usersArray" (click)=openForEdit(user)>
-            {{user._id}}
-            {{user.email}}
-            {{user.password}}
+            id: {{user._id}}
+            email: {{user.email}}
+            administrador: {{user.roles.admin}}
+            contraseña: {{user.password}}
+
         </li>
     </ul>
-    <button (click)="addOrEdit()">
+    <!-- <button (click)="addOrEdit()">
         Submit
-    </button>
-    <button *ngIf="selectedUsers._id !== 0" (click)="delete()">
+    </button> -->
+    <!-- <button *ngIf="selectedUsers._id !== 0" (click)="delete()">
         Delete
-    </button>
+    </button> -->
 </div>

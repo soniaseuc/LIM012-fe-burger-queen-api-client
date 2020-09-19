@@ -16,7 +16,7 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent },
   {path: 'orders', component: OrdersComponent, canActivate: [AuthGuardsService] },
-  {path: 'products', component: ProductsComponent, canActivate: [AuthGuardsService] },
+  {path: 'products', component: ProductsComponent },
   {path: 'users', component: UsersComponent },
   {path: '**', component: Page404Component, canActivate: [AuthGuardsService] }
 ];

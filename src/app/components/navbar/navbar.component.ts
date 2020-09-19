@@ -22,4 +22,17 @@ export class NavbarComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['']);
   }
+
+  listUser(): void {
+    this.router.navigate(['/users']);
+  }
+  listProducts(): void {
+    this.router.navigate(['/products']);
+  }
+  listMenu(): void {
+    this.router.navigate(['/home']);
+  }
+  listOrders(): void {
+    this.router.navigate(['/orders']);
+  }
 }
