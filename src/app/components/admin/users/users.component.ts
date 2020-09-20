@@ -13,22 +13,6 @@ export class UsersComponent implements OnInit {
   @Input() hijoUsers: any;
 
   usersArray: User[];
-  // = [
-  //   { _id: 1, 
-  //     email: 'admin.maria@test.com', 
-  //     roles: {
-  //       admin: true
-  //     },
-  //     password: '123456',
-  //   },
-  //   { _id: 2, 
-  //     email: 'localhost@test.com', 
-  //     roles: {
-  //       admin: false
-  //     },
-  //     password: '123456',
-  //   },
-  // ];
 
   constructor(private userService:UsersService, private router:Router ) { }
 
@@ -41,23 +25,27 @@ export class UsersComponent implements OnInit {
 
   selectedUsers: User = new User();
 
-  // addOrEdit(): void{
-  //   if (this.selectedUsers._id === 0) {
-  //     this.selectedUsers._id = this.usersArray.length + 1;
-  //     console.log(this.selectedUsers);
-  //     this.usersArray.push(this.selectedUsers);
-  //   }
-  //   this.selectedUsers = new User();    
-  //   console.log(this.usersArray);
-  // }
+  addOrEdit(): void{ // era botton sumit que añadia nuevo user pero no en API
+    if (this.selectedUsers._id === '0') {
+      // this.selectedUsers._id = this.usersArray.length + 1;
+      console.log(this.selectedUsers);
+      this.usersArray.push(this.selectedUsers);
+    }
+    this.selectedUsers = new User();    
+    console.log(this.usersArray);
+  }
 
-  openForEdit(user: User): void {
+  openForEdit(user: User): void { // cdo click sobre nombre mostraba en imput para editar
     this.selectedUsers = user;
   }
 
-  // delete() {
-  //   this.usersArray = this.usersArray
-  //   .filter(x => x != this.selectedUsers);
-  //   this.selectedUsers = new User();
-  // }
+  delete() { // borraba pero no en api, en un solo componente todo
+    this.usersArray = this.usersArray
+    .filter(x => x != this.selectedUsers);
+    this.selectedUsers = new User();
+  }
+
+  add() {
+    this.router.navigate(['/user']);
+  }
 }

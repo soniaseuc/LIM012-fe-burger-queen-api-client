@@ -1,36 +1,63 @@
 <app-navbar></app-navbar>
 <app-date></app-date>
 
-<div>
-    <p> Añadir nuevo usuario</p>
-</div>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Role</th>
 
-<!-- <div class="form-group">
-<input type="number" [(ngModel)]= "selectedUsers._id" placeholder="Id usuario" class="form-control"/>
-</div> -->
-<div class="form-group">
-    <input type="text" [(ngModel)]= "selectedUsers.email" placeholder="Correo Usuario" class="form-control"/>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor= "let user of usersArray" (click)=openForEdit(user)>
+            <td>{{user._id}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.roles.admin}}</td>
 
-</div>
-<div class="form-group">
-        <input type="text" [(ngModel)]= "selectedUsers.password" placeholder=" contraseña usuario" class="form-control"/>
+            <td>
+                <!-- <button>Editar</button>
+                <button>Borrar</button> -->
 
-</div>
+                <button *ngIf="selectedUsers._id !== 0" (click)="delete()">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
-<div>
-    <ul>
-        <li *ngFor= "let user of usersArray" (click)=openForEdit(user)>
-            id: {{user._id}}
-            email: {{user.email}}
-            administrador: {{user.roles.admin}}
-            contraseña: {{user.password}}
+        <!-- <li *ngFor= "let user of usersArray" (click)=openForEdit(user)> -->
+            
+            
+            
+            
 
-        </li>
-    </ul>
+
     <!-- <button (click)="addOrEdit()">
         Submit
     </button> -->
     <!-- <button *ngIf="selectedUsers._id !== 0" (click)="delete()">
         Delete
     </button> -->
+<!-- </div> -->
+
+<!-- <div>
+    <p> Añadir nuevo usuario</p>
+</div> -->
+
+<!-- <div class="form-group">
+    <input type="number" [(ngModel)]= "selectedUsers._id" placeholder="Id usuario" class="form-control"/>
+</div> -->
+<!-- <div class="form-group">
+    <input type="text" [(ngModel)]= "selectedUsers.email" placeholder="Correo Usuario" class="form-control"/>
 </div>
+<div class="form-group">
+    <input type="text" [(ngModel)]= "selectedUsers.password" placeholder=" contraseña usuario" class="form-control"/>
+</div> -->
+
+<!-- <button (click)="addOrEdit()">Submit</button> -->
+
+<button (click)="add()">crear nuevo usuario</button>
+
+<!-- <app-create-update-delete></app-create-update-delete> -->

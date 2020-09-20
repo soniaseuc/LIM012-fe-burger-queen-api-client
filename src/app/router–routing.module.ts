@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './components/user/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { Page404Component } from './components/page404/page404.component';
-// import { RegisterComponent } from './components/user/register/register.component';
+import { CreateUpdateDeleteComponent } from './components/admin/create-update-delete/create-update-delete.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { AuthGuardsService } from './Guards/auth-guards.service';
 import { ProductsComponent } from './components/admin/products/products.component';
@@ -18,6 +18,7 @@ const appRoutes: Routes = [
   {path: 'orders', component: OrdersComponent, canActivate: [AuthGuardsService] },
   {path: 'products', component: ProductsComponent },
   {path: 'users', component: UsersComponent },
+  {path: 'user', component: CreateUpdateDeleteComponent },
   {path: '**', component: Page404Component, canActivate: [AuthGuardsService] }
 ];
 

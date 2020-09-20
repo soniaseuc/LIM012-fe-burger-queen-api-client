@@ -17,4 +17,10 @@ export class UsersService {
   getPersonas() {
     return this.http.get<User[]>(`${this.url}users`);
   }
+
+  createPersona(persona:User){
+    return this.http.post<User>(`${this.url}users`, persona);
+    // return this.http.post<any>(`${this.url}auth`, user)
+    // this.http.post('https://burguerqueen-sc.herokuapp.com/orders', order)
+  }
 }
