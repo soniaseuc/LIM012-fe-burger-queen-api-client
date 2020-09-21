@@ -4,11 +4,11 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/interfaces/users';
 
 @Component({
-  selector: 'app-create-update-delete',
-  templateUrl: './create-update-delete.component.html',
-  styleUrls: ['./create-update-delete.component.css']
+  selector: 'app-create-user',
+  templateUrl: './create-user.component.html',
+  styleUrls: ['./create-user.component.scss']
 })
-export class CreateUpdateDeleteComponent implements OnInit {
+export class CreateUserComponent implements OnInit {
 
   constructor(private router: Router, private service: UsersService) { }
   selectedUsers: User = new User();

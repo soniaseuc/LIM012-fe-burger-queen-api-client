@@ -7,21 +7,21 @@
             <th>ID</th>
             <th>Email</th>
             <th>Role</th>
-
             <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor= "let user of usersArray" (click)=openForEdit(user)>
+        <tr *ngFor= "let user of usersArray">
+        <!-- (click)=openForEdit(user) -->        
             <td>{{user._id}}</td>
             <td>{{user.email}}</td>
             <td>{{user.roles.admin}}</td>
 
             <td>
-                <!-- <button>Editar</button>
-                <button>Borrar</button> -->
+                <button (click)="Editar(user)" >Editar</button>
+                <button (click)="Delete(user)" >Borrar</button>
 
-                <button *ngIf="selectedUsers._id !== 0" (click)="delete()">Delete</button>
+                <!-- <button *ngIf="selectedUsers._id !== 0" (click)="delete()">Delete</button> -->
             </td>
         </tr>
     </tbody>

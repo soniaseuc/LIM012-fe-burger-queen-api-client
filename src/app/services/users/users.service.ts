@@ -19,8 +19,24 @@ export class UsersService {
   }
 
   createPersona(persona:User){
+    console.log(`create persona: ${persona._id}`);
     return this.http.post<User>(`${this.url}users`, persona);
-    // return this.http.post<any>(`${this.url}auth`, user)
-    // this.http.post('https://burguerqueen-sc.herokuapp.com/orders', order)
+  }
+
+  getPersonaId(id:string){
+    console.log(`get persona id: ${id}`);
+    return this.http.get<User>(`${this.url}users/${id}`);
+  }
+
+  updatePersona(persona:User){
+    console.log(`update persona: ${persona}`);
+    console.log(`update persona id: ${persona._id}`);
+    return this.http.put<User>(`${this.url}users/${persona._id}`, persona);
+  }
+
+  deletePersona(persona:User){
+    console.log(`delete persona: ${persona}`);
+    console.log(`delete persona id: ${persona._id}`);
+    return this.http.delete<User>(`${this.url}users/${persona._id}`);
   }
 }

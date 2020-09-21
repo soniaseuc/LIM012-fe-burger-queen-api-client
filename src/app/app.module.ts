@@ -25,7 +25,8 @@ import { BillOrdersComponent } from './components/bill-orders/bill-orders.compon
 import { MenuListProductsComponent } from './components/menu-list-products/menu-list-products.component';
 import { UsersComponent } from './components/admin/users/users.component';
 import { ProductsComponent } from './components/admin/products/products.component';
-import { CreateUpdateDeleteComponent } from './components/admin/create-update-delete/create-update-delete.component';
+import { CreateUserComponent } from './components/admin/create-user/create-user.component';
+import { EditUserComponent } from './components/admin/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CreateUpdateDeleteComponent } from './components/admin/create-update-de
     MenuListProductsComponent,
     UsersComponent,
     ProductsComponent,
-    CreateUpdateDeleteComponent,
+    CreateUserComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,
