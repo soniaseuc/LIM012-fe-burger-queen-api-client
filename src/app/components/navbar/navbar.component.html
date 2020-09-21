@@ -1,8 +1,14 @@
 <header>
     <app-milogo [hijoLogo]="padreLogo"></app-milogo>
     <section class="user-logout">
-        <p class="user-name">USUARIO</p>
+        <button class="user-name options-button" (click)="listMenu()">Menu</button>
+        <button class="user-name options-button" (click)="listOrders()">Pedidos</button>
+        <button class="user-name options-button" (click)="listUser()">Usuarios</button>
+        <button class="user-name options-button" (click)="listProducts()">Productos</button>
+
         <button class="logout" (click)="logOut()">CERRAR SESIÓN</button>
     </section>
+
+    
     
 </header>

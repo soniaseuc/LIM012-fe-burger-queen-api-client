@@ -1,4 +1,4 @@
-
+// modules
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -7,6 +7,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterRoutingModule } from './router–routing.module';
 
 // services
+import { UsersService } from './services/users/users.service';
 import { ConfigcontrollerAuthService } from '../app/services/auth/config-controller-auth.service';
 import { AuthGuardsService } from './Guards/auth-guards.service';
 
@@ -14,7 +15,6 @@ import { AuthGuardsService } from './Guards/auth-guards.service';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-// import { RegisterComponent } from './components/user/register/register.component';
 import { LoginComponent } from './components/user/login/login.component';
 import { Page404Component } from './components/page404/page404.component';
 import { OrdersComponent } from './components/orders/orders.component';
@@ -25,7 +25,8 @@ import { BillOrdersComponent } from './components/bill-orders/bill-orders.compon
 import { MenuListProductsComponent } from './components/menu-list-products/menu-list-products.component';
 import { UsersComponent } from './components/admin/users/users.component';
 import { ProductsComponent } from './components/admin/products/products.component';
-
+import { CreateUserComponent } from './components/admin/create-user/create-user.component';
+import { EditUserComponent } from './components/admin/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,8 @@ import { ProductsComponent } from './components/admin/products/products.componen
     MenuListProductsComponent,
     UsersComponent,
     ProductsComponent,
+    CreateUserComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,7 @@ import { ProductsComponent } from './components/admin/products/products.componen
   ],
   providers: [
     AuthGuardsService,
+    UsersService,
     {
       provide:  HTTP_INTERCEPTORS,
       useClass: ConfigcontrollerAuthService,

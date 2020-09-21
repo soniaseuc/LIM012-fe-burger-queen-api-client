@@ -35,3 +35,63 @@
 
 <section class="containerII">
 </section>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor= "let user of usersArray">
+        <!-- (click)=openForEdit(user) -->        
+            <td>{{user._id}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.roles.admin}}</td>
+
+            <td>
+                <button (click)="Editar(user)" >Editar</button>
+                <button (click)="Delete(user)" >Borrar</button>
+
+                <!-- <button *ngIf="selectedUsers._id !== 0" (click)="delete()">Delete</button> -->
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+        <!-- <li *ngFor= "let user of usersArray" (click)=openForEdit(user)> -->
+            
+            
+            
+            
+
+
+    <!-- <button (click)="addOrEdit()">
+        Submit
+    </button> -->
+    <!-- <button *ngIf="selectedUsers._id !== 0" (click)="delete()">
+        Delete
+    </button> -->
+<!-- </div> -->
+
+<!-- <div>
+    <p> Añadir nuevo usuario</p>
+</div> -->
+
+<!-- <div class="form-group">
+    <input type="number" [(ngModel)]= "selectedUsers._id" placeholder="Id usuario" class="form-control"/>
+</div> -->
+<!-- <div class="form-group">
+    <input type="text" [(ngModel)]= "selectedUsers.email" placeholder="Correo Usuario" class="form-control"/>
+</div>
+<div class="form-group">
+    <input type="text" [(ngModel)]= "selectedUsers.password" placeholder=" contraseña usuario" class="form-control"/>
+</div> -->
+
+<!-- <button (click)="addOrEdit()">Submit</button> -->
+
+<button (click)="add()">crear nuevo usuario</button>
+
+<!-- <app-create-update-delete></app-create-update-delete> -->
