@@ -16,6 +16,10 @@
                     <label for="">Contraseña:</label>
                     <input type="text" [(ngModel)]= "selectedUsers.password" name="password" placeholder="Contraseña Usuario" class="form-control">
                 </div>
+                <!-- <div class="form-group">
+                    <label for="">Seria administrador? (solo true o false):</label>
+                    <input type="text" [(ngModel)]= "selectedUsers.roles.admin" name="admin" placeholder="Rol admin o no" class="form-control">
+                </div> -->
                 <button (click)="Guardar(selectedUsers)" class="btn btn-danger">Guardar</button>
             </form>
         </div>

@@ -12,10 +12,11 @@
                     <label for="">Correo:</label>
                     <input type="text" [(ngModel)]= "selectedUsers.email" name="email" placeholder="Email Usuario" class="form-control">
                 </div>
-                <div class="form-group">
-                    <label for="">Contraseña:</label>
-                    <input type="text" [(ngModel)]= "selectedUsers.password" name="password" placeholder="Contraseña Usuario" class="form-control">
-                </div>
+
+                <!-- <div class="form-group">
+                    <label for="">Es admin:</label>
+                    <input type="text" [(ngModel)]= "selectedUsers.roles.admin" name="admin" placeholder="es admin(true o false)" class="form-control">
+                </div> -->
                 <button (click)="Actualizar(selectedUsers)" class="btn btn-danger">Actualizar</button>
             </form>
         </div>
