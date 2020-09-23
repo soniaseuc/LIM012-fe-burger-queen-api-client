@@ -9,13 +9,11 @@ import { map } from 'rxjs/operators';
 })
 
 export class AuthConfigService {
-  private currentUserSubject: BehaviorSubject<any>;
-  public currentUser: Observable<any>;
+  private currentUserSubject = new BehaviorSubject<any>(sessionStorage.getItem('currentUser'));;
+  public currentUser = this.currentUserSubject.asObservable();
   public url: string;
 
   constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<any>(sessionStorage.getItem('currentUser'));
-    this.currentUser = this.currentUserSubject.asObservable();
     this.url = environment.apiUrl;
   }
 
@@ -31,10 +29,22 @@ export class AuthConfigService {
     return this.http.get(`${this.url}users/${idUser}`); // read
   }
 
+  isAuth() {
+    return !!sessionStorage.getItem('currentUser'); // !! vuelve boolean
+  }
+
+  // isAdmin() { 
+  //   // guardar role
+  //   // validas si es admin
+  //   return !!sessionStorage.getItem('currentUser'); // !! vuelve boolean
+  // }
+
   checkUser(user: any): Observable<any> {
     return this.http.post<any>(`${this.url}auth`, user)
       .pipe(map(userLogged => {
             sessionStorage.setItem('currentUser', userLogged['token']);
+            console.log("user123", user);
+            
             this.currentUserSubject.next(user);
             return userLogged;
       }));
@@ -50,8 +60,9 @@ export class AuthConfigService {
   // }
 
   logout(): void { // usandose
-    sessionStorage.removeItem('currentUser');
+    sessionStorage.clear();
+    // sessionStorage.removeItem('currentUser');
     // sessionStorage.removeItem('emailCurrentUser');
-    // this.currentUserSubject.next(null);
+    this.currentUserSubject.next(null);
   }
 }

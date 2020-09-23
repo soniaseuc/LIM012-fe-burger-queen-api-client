@@ -17,7 +17,7 @@ export class EditUserComponent implements OnInit {
   }
 
   Editar(){
-    let id = sessionStorage.getItem('_id');
+    let id = sessionStorage.getItem('id');
     this.service.getPersonaId(id)
     .subscribe(data => {
       this.selectedUsers = data;

@@ -31,7 +31,9 @@ export class UsersService {
   updatePersona(persona:User){
     console.log(`update persona: ${persona}`);
     console.log(`update persona id: ${persona._id}`);
-    return this.http.put<User>(`${this.url}users/${persona._id}`, persona);
+    let id = persona._id;
+    delete persona._id;
+    return this.http.put<User>(`${this.url}users/${id}`, persona);
   }
 
   deletePersona(persona:User){

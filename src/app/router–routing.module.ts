@@ -15,13 +15,13 @@ import { EditUserComponent } from './components/admin/edit-user/edit-user.compon
 const appRoutes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'home', component: HomeComponent },
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuardsService]  },
   {path: 'orders', component: OrdersComponent, canActivate: [AuthGuardsService] },
-  {path: 'products', component: ProductsComponent },
-  {path: 'users', component: UsersComponent },
-  {path: 'user', component: CreateUserComponent },
-  {path: 'edit', component: EditUserComponent },
-  {path: '**', component: Page404Component, canActivate: [AuthGuardsService] }
+  {path: 'products', component: ProductsComponent, canActivate: [AuthGuardsService] },
+  {path: 'users', component: UsersComponent, canActivate: [AuthGuardsService] },
+  {path: 'user', component: CreateUserComponent, canActivate: [AuthGuardsService] },
+  {path: 'edit', component: EditUserComponent, canActivate: [AuthGuardsService] },
+  {path: '**', component: Page404Component }
 ];
 
 @NgModule({
