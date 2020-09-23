@@ -1,40 +1,6 @@
 <app-navbar></app-navbar>
 <app-date></app-date>
 
-<section class="admin-section-container">
-
-<div >
-    <p class="letraListado"> Usuarios</p>
-    <p class="letraListado-sub"> Añade un usuario nuevo</p>
-</div>
-
-<div >
-    <input type="text" [(ngModel)]= "selectedUsers.email" placeholder="Correo Usuario" />
-</div>
-
-<div >
-    <input type="text" [(ngModel)]= "selectedUsers.password" placeholder=" contraseña usuario" />
-</div>
-
-
-<th >EMAIL</th>  
-<th>PASSWORD </th> 
-<div class="listado-users" *ngFor= "let user of usersArray" (click)=openForEdit(user)>
-   
-    <td>{{user._id}}</td>
-    <td>{{user.email}}</td>
-    <td>{{user.password}}</td>
-</div>
-
-<div class="section-btn ">
-    <button class="btn-submit"  (click)="addOrEdit()">Submit</button>
-    <button class ="btn-submit" (click)="delete()" >Delete</button>
-</div>
-
-</section>
-
-<section class="containerII">
-</section>
 <table>
     <thead>
         <tr>
