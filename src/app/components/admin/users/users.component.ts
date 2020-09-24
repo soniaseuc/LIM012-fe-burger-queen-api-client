@@ -11,15 +11,37 @@ import { UsersService } from 'src/app/services/users/users.service';
 })
 export class UsersComponent implements OnInit {
   @Input() hijoUsers: any;
+  selectedUsers: User = new User();
+ 
 
   usersArray: User[];
 
-  constructor(private userService:UsersService, private router:Router ) { }
+  constructor(private userService:UsersService, private router:Router, private service: UsersService ) { }
 
   ngOnInit(): void {
     this.userService.getPersonas()
     .subscribe(data => {
       this.usersArray = data;
+    })
+
+   
+      this.Editar1();
+  
+  }
+  Editar1(){
+    let id = sessionStorage.getItem('id');
+    this.service.getPersonaId(id)
+    .subscribe(data => {
+      this.selectedUsers = data;
+    })
+  }
+
+  Actualizar(persona:User) {
+    this.service.updatePersona(persona)
+    .subscribe(data => {
+      this.selectedUsers = data;
+      alert("Se actualizo con Exito ... !!!");
+      this.router.navigate(['/users']);
     })
   }
 
@@ -33,6 +55,14 @@ export class UsersComponent implements OnInit {
     .subscribe(data => {
       this.usersArray = this.usersArray.filter( p => p !== persona);
       alert("Usuario eliminado ...");
+    })
+  }
+
+  Guardar(persona:User): void{
+    this.service.createPersona(persona)
+    .subscribe(data => {
+      alert("Se agrego con exito ...!!!");
+      this.router.navigate(['/users'])
     })
   }
   
