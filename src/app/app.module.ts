@@ -10,6 +10,7 @@ import { RouterRoutingModule } from './router–routing.module';
 import { UsersService } from './services/users/users.service';
 import { ConfigcontrollerAuthService } from '../app/services/auth/config-controller-auth.service';
 import { AuthGuardsService } from './Guards/auth-guards.service';
+import { CrudProdService } from './services/CRUDprod/crud-prod.service';
 
 // components
 import { AppComponent } from './app.component';
@@ -27,6 +28,8 @@ import { UsersComponent } from './components/admin/users/users.component';
 import { ProductsComponent } from './components/admin/products/products.component';
 import { CreateUserComponent } from './components/admin/create-user/create-user.component';
 import { EditUserComponent } from './components/admin/edit-user/edit-user.component';
+import { ProductListComponent } from './components/admin/product-list/product-list.component';
+import { ProductComponent } from './components/admin/product/product.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +48,8 @@ import { EditUserComponent } from './components/admin/edit-user/edit-user.compon
     ProductsComponent,
     CreateUserComponent,
     EditUserComponent,
+    ProductListComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +59,7 @@ import { EditUserComponent } from './components/admin/edit-user/edit-user.compon
   ],
   providers: [
     AuthGuardsService,
+    CrudProdService,
     UsersService,
     {
       provide:  HTTP_INTERCEPTORS,

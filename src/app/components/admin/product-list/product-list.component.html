@@ -1,0 +1,32 @@
+<div>
+    <div>
+        <h6>List of Products</h6>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Image</th>
+                    <th>Type</th>
+                    <th>date of Entry</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor= "let product of productList">
+                    <td>{{product._id}}</td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.image}}</td>
+                    <td>{{product.type}}</td>
+                    <td>{{product.dateEntry}}</td>
+                    <td>
+                        <button>Edit</button>
+                        <button (click)="Delete(product)">Delete</button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
