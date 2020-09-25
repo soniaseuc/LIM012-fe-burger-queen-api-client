@@ -45,13 +45,13 @@ export class CrudProdService {
   }
 
   updateProduct(product: Product) {
-    console.log(`update product: ${product}`);
     console.log(`update product id: ${product._id}`);
-    return this.http.put<Product>(`${this.url}products/${product._id}`, product , {headers: {Authorization:`Bearer ${this.idToken}`}});
+    let id = product._id;
+    delete product._id;
+    return this.http.put<Product>(`${this.url}products/${id}`, product);
   }
 
   deleteProduct(product:Product){
-    console.log(`delete product: ${product}`);
     console.log(`delete product id: ${product._id}`);
     return this.http.delete<Product>(`${this.url}products/${product._id}`, {headers: {Authorization:`Bearer ${this.idToken}`}});
   }

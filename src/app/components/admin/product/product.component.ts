@@ -67,8 +67,12 @@ export class ProductComponent implements OnInit {
       // this.crudProdService.selectedProduct.price = parseInt(sessionStorage.getItem('productPrice'));
       // this.crudProdService.selectedProduct.image = sessionStorage.getItem('productImage');
       if (product != null) {
-        this.crudProdService.updateProduct(product);
-        alert("Se modifico con exito ...!!!");
+        this.crudProdService.updateProduct(product)
+        .subscribe(data => {
+          console.log(data);          
+          alert("Se modifico con exito ...!!!");
+        })
+
         this.resetForm();
       }
   }
