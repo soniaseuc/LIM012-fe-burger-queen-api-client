@@ -12,6 +12,7 @@ import { UsersService } from 'src/app/services/users/users.service';
 export class UsersComponent implements OnInit {
   @Input() hijoUsers: any;
   selectedUsers: User = new User();
+  selectedUser: User = new User();
  
 
   usersArray: User[];
@@ -25,29 +26,35 @@ export class UsersComponent implements OnInit {
     })
 
    
-      this.Editar1();
+     // this.Editar1();
   
   }
+
   Editar1(){
     let id = sessionStorage.getItem('id');
     this.service.getPersonaId(id)
     .subscribe(data => {
-      this.selectedUsers = data;
+      this.selectedUser = data;
     })
   }
 
   Actualizar(persona:User) {
     this.service.updatePersona(persona)
     .subscribe(data => {
-      this.selectedUsers = data;
+      this.selectedUser = data;
       alert("Se actualizo con Exito ... !!!");
+     // this.router.navigate(['/users']);
+     this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
       this.router.navigate(['/users']);
+  }); 
+      
     })
   }
 
+
   Editar(persona:User): void {
     sessionStorage.setItem("id", persona._id.toString());
-    this.router.navigate(['/edit']);
+    // this.router.navigate(['/edit']);
   }
 
   Delete(persona: User){
@@ -62,10 +69,12 @@ export class UsersComponent implements OnInit {
     this.service.createPersona(persona)
     .subscribe(data => {
       alert("Se agrego con exito ...!!!");
-      this.router.navigate(['/users'])
+      this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['/users']);
     })
-  }
-  
+  })
+ }
+}
   // selectedUsers: User = new User();
 
   // addOrEdit(): void{ // era botton sumit que añadia nuevo user pero no en API
@@ -88,7 +97,6 @@ export class UsersComponent implements OnInit {
   //   this.selectedUsers = new User();
   // }
 
-  add() {
-    this.router.navigate(['/user']);
-  }
-}
+ // add() {
+ //   this.router.navigate(['/user']);
+ // }
