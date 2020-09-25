@@ -21,7 +21,7 @@
                     <td>{{product.type}}</td>
                     <td>{{product.dateEntry}}</td>
                     <td>
-                        <button>Edit</button>
+                        <button (click)="editProduct(product)">Edit</button>
                         <button (click)="Delete(product)">Delete</button>
                     </td>
                 </tr>

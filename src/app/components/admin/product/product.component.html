@@ -52,7 +52,10 @@
 
             <div>
                 <button class="btn-primary"
-                    type="submit" (click)="Guardar(crudProdService.selectedProduct)">Add a Product
+                    type="submit" (click)="Guardar(crudProdService.selectedProduct)">Save
+                </button>
+                <button class="btn-primary"
+                    (click)="editProduct(crudProdService.selectedProduct)">Actualizar
                 </button>
                 <!-- <button class="btn-secundary"
                     type="reset"

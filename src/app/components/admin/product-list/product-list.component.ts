@@ -1,5 +1,5 @@
 import { CrudProdService } from './../../../services/CRUDprod/crud-prod.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
 
 @Component({
@@ -10,6 +10,7 @@ import { Product } from 'src/app/interfaces/product';
 export class ProductListComponent implements OnInit {
   productList: Product[];
   product: any;
+  // @Output() editar = new EventEmitter<object>();
 
   constructor(private productService: CrudProdService) { }
 
@@ -33,6 +34,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnChange(): void {
     this.productService.getProducts();
+    this.editProduct();
   }
 
   Delete(product: Product){
@@ -43,4 +45,32 @@ export class ProductListComponent implements OnInit {
     })
   }
 
+  // Edit(product: Product) {
+  //   console.log(product);
+  //   this.productService.updateProduct(product)
+  //   .subscribe(data => {
+  //     console.log("data:", data);
+  //   })
+  // }
+
+  editProduct (product?: Product) {
+    // this.editar.emit(product);
+    console.log(product);
+    sessionStorage.setItem("productName", product.name);
+    sessionStorage.setItem("productId", product._id);
+    sessionStorage.setItem("productPrice", product.price.toString());
+    sessionStorage.setItem("productImage", product.image);
+    sessionStorage.setItem("productType", product.type);
+  }
+
+
+
+  // Actualizar(persona:User) {
+  //   this.service.updatePersona(persona)
+  //   .subscribe(data => {
+  //     this.selectedUsers = data;
+  //     alert("Se actualizo con Exito ... !!!");
+  //     this.router.navigate(['/users']);
+  //   })
+  // }
 }

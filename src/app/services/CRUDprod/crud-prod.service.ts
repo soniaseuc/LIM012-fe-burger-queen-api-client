@@ -10,13 +10,14 @@ export class CrudProdService {
   public url: string;
   public productList: any;
   selectedProduct: Product = new Product();//inicia service esta variable esta vacia
+  idToken = sessionStorage.getItem('token');
 
   constructor(private http:HttpClient) { 
     this.url = environment.apiUrl;
   }
 
   getProducts() {
-    this.productList = this.http.get<Product[]>(`${this.url}products`);
+    this.productList = this.http.get<Product[]>(`${this.url}products`, {headers: {Authorization:`Bearer ${this.idToken}`}});
     console.log("productList:", this.productList);
     return this.productList;
     // return this.http.get<Product[]>(`${this.url}products`);
@@ -35,7 +36,7 @@ export class CrudProdService {
 
   insertProduct(product: Product){
     console.log(`create product - name: ${product.name}`);
-    return this.http.post<Product>(`${this.url}products`, product);
+    return this.http.post<Product>(`${this.url}products`, product , {headers: {Authorization:`Bearer ${this.idToken}`}});
   }
 
   updateProduct(product: Product) {
@@ -43,12 +44,16 @@ export class CrudProdService {
     console.log(`update product id: ${product._id}`);
     let id = product._id;
     delete product._id;
-    return this.http.put<Product>(`${this.url}products/${id}`, product);
+    return this.http.put<Product>(`${this.url}products/${id}`, product , {headers: {Authorization:`Bearer ${this.idToken}`}});
   }
 
   deleteProduct(product:Product){
     console.log(`delete product: ${product}`);
     console.log(`delete product id: ${product._id}`);
-    return this.http.delete<Product>(`${this.url}products/${product._id}`);
+    return this.http.delete<Product>(`${this.url}products/${product._id}`, {headers: {Authorization:`Bearer ${this.idToken}`}});
+  }
+
+  editProduct(product: Product) {
+
   }
 }
