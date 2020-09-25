@@ -28,21 +28,22 @@ export class ProductListComponent implements OnInit {
     //     x["$_id"] = element._id;
     //     this.productList.push(x as Product);
     //   });
-    // });
-    
+    // });    
   }
 
   ngOnChange(): void {
     this.productService.getProducts();
-    this.editProduct();
+    this.onEdit();
   }
 
-  Delete(product: Product){
-    this.productService.deleteProduct(product)
-    .subscribe(data => {
-      this.productList = this.productList.filter( p => p !== product);
-      alert("Producto eliminado ...");
-    })
+  onDelete(product: Product){
+    if(confirm('Seguro que quieres eliminarlo?')) {
+      this.productService.deleteProduct(product)
+      .subscribe(data => {
+        this.productList = this.productList.filter( p => p !== product);
+        alert("Producto eliminado ...");
+      })
+    }
   }
 
   // Edit(product: Product) {
@@ -53,7 +54,7 @@ export class ProductListComponent implements OnInit {
   //   })
   // }
 
-  editProduct (product?: Product) {
+  onEdit (product?: Product) {
     // this.editar.emit(product);
     console.log(product);
     sessionStorage.setItem("productName", product.name);
@@ -61,8 +62,14 @@ export class ProductListComponent implements OnInit {
     sessionStorage.setItem("productPrice", product.price.toString());
     sessionStorage.setItem("productImage", product.image);
     sessionStorage.setItem("productType", product.type);
+    this.productService.selectedProduct = product; // edit realtime but not save DB
+    // this.productService.selectedProduct = Object.assign({});
   }
 
+  getProdId(prodId) {
+    this.productService.getProductId(prodId);
+    console.log("prodId del productListComponent:", prodId);
+  }
 
 
   // Actualizar(persona:User) {

@@ -25,7 +25,7 @@ export class CrudProdService {
 
   // insertProduct(product: Product) {
   //   console.log(`create product: ${product.name}`);
-  //   const prod = this.productList.concat({
+  //   const prod = this.productList.push({
   //     name: product.name,
   //     price: product.price,
   //     imagen: product.image,
@@ -39,12 +39,15 @@ export class CrudProdService {
     return this.http.post<Product>(`${this.url}products`, product , {headers: {Authorization:`Bearer ${this.idToken}`}});
   }
 
+  getProductId(_id:string){
+    console.log(`get product id: ${_id}`);
+    return this.http.get<Product>(`${this.url}products/${_id}`);
+  }
+
   updateProduct(product: Product) {
     console.log(`update product: ${product}`);
     console.log(`update product id: ${product._id}`);
-    let id = product._id;
-    delete product._id;
-    return this.http.put<Product>(`${this.url}products/${id}`, product , {headers: {Authorization:`Bearer ${this.idToken}`}});
+    return this.http.put<Product>(`${this.url}products/${product._id}`, product , {headers: {Authorization:`Bearer ${this.idToken}`}});
   }
 
   deleteProduct(product:Product){
@@ -53,7 +56,4 @@ export class CrudProdService {
     return this.http.delete<Product>(`${this.url}products/${product._id}`, {headers: {Authorization:`Bearer ${this.idToken}`}});
   }
 
-  editProduct(product: Product) {
-
-  }
 }

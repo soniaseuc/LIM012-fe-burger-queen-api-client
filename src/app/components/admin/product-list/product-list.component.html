@@ -4,7 +4,6 @@
         <table>
             <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Name</th>
                     <th>Price</th>
                     <th>Image</th>
@@ -14,15 +13,14 @@
             </thead>
             <tbody>
                 <tr *ngFor= "let product of productList">
-                    <td>{{product._id}}</td>
                     <td>{{product.name}}</td>
                     <td>{{product.price}}</td>
                     <td>{{product.image}}</td>
                     <td>{{product.type}}</td>
                     <td>{{product.dateEntry}}</td>
                     <td>
-                        <button (click)="editProduct(product)">Edit</button>
-                        <button (click)="Delete(product)">Delete</button>
+                        <button  (click)="getProdId(product._id)" (click)="onEdit(product)">Edit</button>
+                        <button (click)="onDelete(product)">Delete</button>
                     </td>
                 </tr>
 

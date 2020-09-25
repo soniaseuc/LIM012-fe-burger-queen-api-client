@@ -1,66 +1,37 @@
 <div>
     <div>
-        <form action="">
-        <!-- <form #productForm = "ngForm" (ngSubmit) = "onSubmit(productForm)"> -->
+        <!-- <form action=""> -->
+        <form #productForm = "ngForm" (ngSubmit) = "onSubmit(productForm)">
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="crudProdService.selectedProduct._id">
             <div class="form-group">
                 <input type="text" [(ngModel)]= "crudProdService.selectedProduct.name" name="name" placeholder="add product name" class="form-control">
-
-                <!-- <input 
-                type="text" 
-                class="form-control"
-                name="name"
-                #name="ngModel"
-                [(ngModel)]="crudProdService.selectedProduct.name"
-                placeholder="add product name"> -->
             </div>
 
             <div class="form-group">
                 <input type="number" [(ngModel)]= "crudProdService.selectedProduct.price" name="price" placeholder="add product price" class="form-control">
-
-                <!-- <input 
-                type="text" 
-                class="form-control"
-                name="price"
-                #name="ngModel"
-                [(ngModel)]="crudProdService.selectedProduct.price"
-                placeholder="add product price"> -->
             </div>
 
             <div class="form-group">
                 <input type="text" [(ngModel)]= "crudProdService.selectedProduct.image" name="image" placeholder="add product image" class="form-control">
-
-                <!-- <input 
-                type="text" 
-                class="form-control"
-                name="imagen"
-                #name="ngModel"
-                [(ngModel)]="crudProdService.selectedProduct.image"
-                placeholder="add product image"> -->
             </div>
 
             <div class="form-group">
                 <input type="text" [(ngModel)]= "crudProdService.selectedProduct.type" name="type" placeholder="add product type" class="form-control">
-
-                <!-- <input 
-                type="text" 
-                class="form-control"
-                name="type"
-                #name="ngModel"
-                [(ngModel)]="crudProdService.selectedProduct.type"
-                placeholder="add product type"> -->
             </div>
 
             <div>
                 <button class="btn-primary"
                     type="submit" (click)="Guardar(crudProdService.selectedProduct)">Save
                 </button>
+
                 <button class="btn-primary"
                     (click)="editProduct(crudProdService.selectedProduct)">Actualizar
                 </button>
-                <!-- <button class="btn-secundary"
-                    type="reset"
-                    (click)="resetForm(productForm)">Reset
-                </button> -->
+
+                <button class="btn-secundary"
+                    type="reset" (click)="resetFor(productForm)"
+                    (click)="resetForm(crudProdService.selectedProduct)">Reset                    
+                </button>
             </div>
         </form>
     </div>
