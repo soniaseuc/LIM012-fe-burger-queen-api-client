@@ -3,11 +3,15 @@
 
 <div class="ambosContainers">
 <section class="containerI">
-    <p class="letraListado">USUARIOS</p>
+   
+    <div class="letraListado">
+        <span class="iconify" data-inline="false" data-icon="gridicons:multiple-users" style="font-size: 35px; color: red;"></span>
+        LISTADO DE USUARIOS
+        
+    </div>
 <table class="table">
     <thead>
         <tr class="letraListado-sub">
-           
             <th>Email</th>
             <th>Rol</th>
             <th></th>
@@ -37,42 +41,41 @@
 </section>
 
 <section class="containerII">
-    <div class="container">
-        <div class="card">
+  
+        <div class="card1">
             <div class="card-header">
                 <h3>Agregar Usuarios</h3>
             </div>
             <div class="card-body">
                 <form action="">
                     <div class="form-group">
-                        <label for="">Correo:</label>
-                        <input type="text" [(ngModel)]= "selectedUsers.email" name="email" placeholder="Email Usuario" class="form-control">
+                        <label class="label" for="">Correo</label>
+                        <input type="text" [(ngModel)]= "selectedUsers.email" name="email" placeholder="Email Usuario" class="input-style">
                     </div>
                     <div class="form-group">
-                        <label for="">Contraseña:</label>
-                        <input type="text" [(ngModel)]= "selectedUsers.password" name="password" placeholder="Contraseña Usuario" class="form-control">
+                        <label class="label" for="">Contraseña</label>
+                        <input type="text" [(ngModel)]= "selectedUsers.password" name="password" placeholder="Contraseña Usuario" class="input-style">
                     </div>
-                    <button (click)="Guardar(selectedUsers)" class="btn btn-danger">Guardar</button>
+                    <button (click)="Guardar(selectedUsers)" class="btn-submit">Guardar</button>
                 </form>
             </div>
         </div>
-    </div>
     
-        <div class="card">
+        <div class="card2">
             <div class="card-header">
-                <h3>Modificar datos del Usuario</h3>
+                <h3>Actualizar datos</h3>
             </div>
             <div class="card-body">
                 <form action="">
                     <div class="form-group">
-                        <label for="">Correo:</label>
-                        <input type="text" [(ngModel)]= "selectedUser.email" name="email" placeholder="Email Usuario" class="form-control">
+                        <label class="label" for="">Correo</label>
+                        <input type="text" [(ngModel)]= "selectedUser.email" name="email" placeholder="Email Usuario" class="input-style">
                     </div>
                     <div class="form-group">
-                        <label for="">Contraseña:</label>
-                        <input type="text" [(ngModel)]= "selectedUser.password" name="password" placeholder="Contraseña Usuario" class="form-control">
+                        <label class="label" for="">Contraseña</label>
+                        <input type="text" [(ngModel)]= "selectedUser.password" name="password" placeholder="Contraseña Usuario" class="input-style">
                     </div>
-                    <button (click)="Actualizar(selectedUser)" class="btn btn-danger">Actualizar</button>
+                    <button (click)="Actualizar(selectedUser)" class="btn-submit">Actualizar</button>
                 </form>
             </div>
         </div>
