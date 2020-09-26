@@ -10,13 +10,14 @@ export class CrudProdService {
   public url: string;
   public productList: any;
   selectedProduct: Product = new Product();//inicia service esta variable esta vacia
+  idToken = sessionStorage.getItem('token');
 
   constructor(private http:HttpClient) { 
     this.url = environment.apiUrl;
   }
 
   getProducts() {
-    this.productList = this.http.get<Product[]>(`${this.url}products`);
+    this.productList = this.http.get<Product[]>(`${this.url}products`, {headers: {Authorization:`Bearer ${this.idToken}`}});
     console.log("productList:", this.productList);
     return this.productList;
     // return this.http.get<Product[]>(`${this.url}products`);
@@ -24,7 +25,7 @@ export class CrudProdService {
 
   // insertProduct(product: Product) {
   //   console.log(`create product: ${product.name}`);
-  //   const prod = this.productList.concat({
+  //   const prod = this.productList.push({
   //     name: product.name,
   //     price: product.price,
   //     imagen: product.image,
@@ -35,11 +36,15 @@ export class CrudProdService {
 
   insertProduct(product: Product){
     console.log(`create product - name: ${product.name}`);
-    return this.http.post<Product>(`${this.url}products`, product);
+    return this.http.post<Product>(`${this.url}products`, product , {headers: {Authorization:`Bearer ${this.idToken}`}});
+  }
+
+  getProductId(_id:string){
+    console.log(`get product id: ${_id}`);
+    return this.http.get<Product>(`${this.url}products/${_id}`);
   }
 
   updateProduct(product: Product) {
-    console.log(`update product: ${product}`);
     console.log(`update product id: ${product._id}`);
     let id = product._id;
     delete product._id;
@@ -47,8 +52,8 @@ export class CrudProdService {
   }
 
   deleteProduct(product:Product){
-    console.log(`delete product: ${product}`);
     console.log(`delete product id: ${product._id}`);
-    return this.http.delete<Product>(`${this.url}products/${product._id}`);
+    return this.http.delete<Product>(`${this.url}products/${product._id}`, {headers: {Authorization:`Bearer ${this.idToken}`}});
   }
+
 }

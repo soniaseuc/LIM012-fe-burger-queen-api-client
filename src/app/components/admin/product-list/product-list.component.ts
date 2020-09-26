@@ -1,5 +1,5 @@
 import { CrudProdService } from './../../../services/CRUDprod/crud-prod.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
 
 @Component({
@@ -10,6 +10,7 @@ import { Product } from 'src/app/interfaces/product';
 export class ProductListComponent implements OnInit {
   productList: Product[];
   product: any;
+  // @Output() editar = new EventEmitter<object>();
 
   constructor(private productService: CrudProdService) { }
 
@@ -27,20 +28,56 @@ export class ProductListComponent implements OnInit {
     //     x["$_id"] = element._id;
     //     this.productList.push(x as Product);
     //   });
-    // });
-    
+    // });    
   }
 
   ngOnChange(): void {
     this.productService.getProducts();
+    this.onEdit();
   }
 
-  Delete(product: Product){
-    this.productService.deleteProduct(product)
-    .subscribe(data => {
-      this.productList = this.productList.filter( p => p !== product);
-      alert("Producto eliminado ...");
-    })
+  onDelete(product: Product){
+    if(confirm('Seguro que quieres eliminarlo?')) {
+      this.productService.deleteProduct(product)
+      .subscribe(data => {
+        this.productList = this.productList.filter( p => p !== product);
+        alert("Producto eliminado ...");
+      })
+    }
   }
 
+  // Edit(product: Product) {
+  //   console.log(product);
+  //   this.productService.updateProduct(product)
+  //   .subscribe(data => {
+  //     console.log("data:", data);
+  //   })
+  // }
+
+  onEdit (product?: Product) {
+    // this.editar.emit(product);
+    console.log(product);
+    sessionStorage.setItem("productName", product.name);
+    sessionStorage.setItem("productId", product._id);
+    sessionStorage.setItem("productPrice", product.price.toString());
+    sessionStorage.setItem("productImage", product.image);
+    sessionStorage.setItem("productType", product.type);
+    this.productService.selectedProduct = product; // edit realtime but not save DB
+    // this.productService.selectedProduct = Object.assign({});
+  }
+
+  getProdId(prodId) {
+    this.productService.getProductId(prodId);
+    console.log("prodId del productListComponent:", prodId);
+  }
+
+
+  // Actualizar(persona:User) {
+  //   this.service.updatePersona(persona)
+  //   .subscribe(data => {
+  //     this.selectedUsers = data;
+  //     alert("Se actualizo con Exito ... !!!");
+  //     this.router.navigate(['/users']);
+  //   })
+  // }
 }
