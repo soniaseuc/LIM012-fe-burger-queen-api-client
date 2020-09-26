@@ -40,9 +40,9 @@ export class ProductComponent implements OnInit {
     this.crudProdService.insertProduct(product)
     .subscribe(data => {
       console.log("data:", data);      
-      console.log("product:", product);      
-      // this.crudProdService.productList = data;
-      // console.log("productList:", this.crudProdService.productList);      
+      console.log("product:", product);  
+      this.productList.push(data as Product);
+      console.log(this.productList);
       alert("Se agrego con exito ...!!!");
     })
   }
