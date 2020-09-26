@@ -1,7 +1,7 @@
 <div>
     <div>
         <h6>List of Products</h6>
-        <table>
+        <table class="table">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -19,8 +19,12 @@
                     <td>{{product.type}}</td>
                     <td>{{product.dateEntry}}</td>
                     <td>
-                        <button  (click)="getProdId(product._id)" (click)="onEdit(product)">Edit</button>
-                        <button (click)="onDelete(product)">Delete</button>
+                        <button  (click)="getProdId(product._id)" (click)="onEdit(product)">
+                        <span class="iconify edit" data-inline="false" data-icon="ic:baseline-edit" style="font-size: 30px;"></span>
+                        </button>
+                        <button (click)="onDelete(product)">
+                        <span class="iconify delete" data-inline="false" data-icon="ic:baseline-delete" style="font-size: 30px;"></span>
+                        </button>
                     </td>
                 </tr>
 
