@@ -19,11 +19,9 @@
     </thead>
     <tbody >
         <tr  *ngFor= "let user of usersArray">
-        <!-- (click)=openForEdit(user) -->        
            
             <td>{{user.email}}</td>
             <td>{{user.roles.admin}}</td>
-
             <td>
                 <button class="editar" (click)="Editar(user)" (click)="Editar1(user)" >
                 <span class="iconify edit" data-inline="false" data-icon="ic:baseline-edit" style="font-size: 30px;"></span>
@@ -31,13 +29,10 @@
                 <button class="borrar"  (click)="Delete(user)" >
                 <span class="iconify delete" data-inline="false" data-icon="ic:baseline-delete" style="font-size: 30px;"></span>
                 </button>
-
-                <!-- <button *ngIf="selectedUsers._id !== 0" (click)="delete()">Delete</button> -->
             </td>
         </tr>
     </tbody>
 </table>
-<!-- <button class="btn-submit" (click)="add()">crear usuario</button>-->
 </section>
 
 <section class="containerII">

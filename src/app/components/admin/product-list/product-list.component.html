@@ -1,28 +1,26 @@
-<div>
-    <div>
-        <h6>List of Products</h6>
+<section class="containerI">
+    <div class="div-container-title">
+        <img alt="img-product" class="img-product" src="https://user-images.githubusercontent.com/60799456/94722848-7f52cd80-031d-11eb-87ab-ebb182aefe14.png"/>
+        <h6 class="letraListado">Productos</h6>
+    </div>
         <table class="table">
-            <thead>
-                <tr>
+            <thead >
+                <tr class="letraListadoSub">
                     <th>Name</th>
                     <th>Price</th>
-                    <th>Image</th>
                     <th>Type</th>
-                    <th>date of Entry</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr *ngFor= "let product of productList">
+            <tbody >
+                <tr *ngFor= "let product of productList" >
                     <td>{{product.name}}</td>
                     <td>{{product.price}}</td>
-                    <td>{{product.image}}</td>
                     <td>{{product.type}}</td>
-                    <td>{{product.dateEntry}}</td>
                     <td>
-                        <button  (click)="getProdId(product._id)" (click)="onEdit(product)">
+                        <button  class="editar" (click)="getProdId(product._id)" (click)="onEdit(product)">
                         <span class="iconify edit" data-inline="false" data-icon="ic:baseline-edit" style="font-size: 30px;"></span>
                         </button>
-                        <button (click)="onDelete(product)">
+                        <button class="borrar" (click)="onDelete(product)">
                         <span class="iconify delete" data-inline="false" data-icon="ic:baseline-delete" style="font-size: 30px;"></span>
                         </button>
                     </td>
@@ -30,5 +28,5 @@
 
             </tbody>
         </table>
-    </div>
-</div>
+   
+</section>
