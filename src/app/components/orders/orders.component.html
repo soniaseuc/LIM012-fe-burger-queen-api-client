@@ -1,33 +1,36 @@
 <app-navbar [navbarHijo]="navbarPadre"></app-navbar>
 
 <app-date></app-date>
+
 <article class="articleButton">
     <button class="options-button" routerLink="/home" routerLinkActive="active">Desayuno</button>
     <button class="options-button" routerLink="/home" routerLinkActive="active">Almuerzo</button>
     <button class="options-button" routerLink="/orders" routerLinkActive="active">Pedidos</button>
 </article>
 <section class="box-container-orders">
-    <app-food-orders [foodordersHijo]="foodordersPadre"></app-food-orders>
-
     <article class="container-pedido">
-        <p class="letraListado">PEDIDOS DE COCINA</p>
-        <input class="btn-post-order" id="Entregado" type="checkbox">
-        <label class="btn-post-order" for="Entregado">EN PROGRESO</label>
-
+        <p class="letraListado">LISTADO DE PEDIDOS</p>
+    
         <table class="table-products">
-            <tr>
-              <th> PRODUCTOS </th>
-              <th> CANTIDAD </th>
-        </tr>
-       
-
-        <div class="paintOrders" *ngFor="let order of orders">
-            <p>{{order.client}}</p>
-            <div *ngFor="let product of order.products">
-            <td>{{product.product.name}}</td>
-            <td>{{product.qty}}</td>
+          
+        <div >
+            <div  *ngFor="let order of orders"  class="card">
+                <p>CLIENTE {{order.client}}</p>
+                <div *ngFor="let product of order.products" class="order-detail">
+                <td>{{product.product.name}}</td>
+                <td>{{product.qty}}</td>
+                </div> 
+                    <div class="buttons">
+                        <td >
+                            <button class="borrar"  (click)="Delete(order)" >
+                            <span class="iconify delete" data-inline="false" data-icon="ic:baseline-delete" style="font-size: 30px;"></span>
+                            </button>
+                         </td>
+                    </div>
             </div> 
-        </div> 
+           
+        </div>
+     
     </table>
     </article>
 </section>

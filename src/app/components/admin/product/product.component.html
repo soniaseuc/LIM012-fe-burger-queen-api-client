@@ -1,38 +1,44 @@
-<div>
-    <div>
+<section class="containerII">
+    
+    <div class="card">
+        <div class="title-card">
+            <p class="letraListado">
+                AGREGAR & EDITAR PRODUCTOS
+            </p>
+        </div>
         <!-- <form action=""> -->
         <form #productForm = "ngForm" (ngSubmit) = "onSubmit(productForm)">
             <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="crudProdService.selectedProduct._id">
             <div class="form-group">
-                <input type="text" [(ngModel)]= "crudProdService.selectedProduct.name" name="name" placeholder="add product name" class="form-control">
+                <input type="text" [(ngModel)]= "crudProdService.selectedProduct.name" name="name" placeholder="add product name" class="input-style">
             </div>
 
             <div class="form-group">
-                <input type="number" [(ngModel)]= "crudProdService.selectedProduct.price" name="price" placeholder="add product price" class="form-control">
+                <input type="number" [(ngModel)]= "crudProdService.selectedProduct.price" name="price" placeholder="add product price" class="input-style">
             </div>
+
+          <!--   <div class="form-group">
+                <input type="text" [(ngModel)]= "crudProdService.selectedProduct.image" name="image" placeholder="add product image" class="input-style">
+            </div>-->
 
             <div class="form-group">
-                <input type="text" [(ngModel)]= "crudProdService.selectedProduct.image" name="image" placeholder="add product image" class="form-control">
+                <input type="text" [(ngModel)]= "crudProdService.selectedProduct.type" name="type" placeholder="add product type" class="input-style">
             </div>
 
-            <div class="form-group">
-                <input type="text" [(ngModel)]= "crudProdService.selectedProduct.type" name="type" placeholder="add product type" class="form-control">
-            </div>
-
-            <div>
-                <button class="btn-primary"
-                    type="submit" (click)="Guardar(crudProdService.selectedProduct)">Save
+            <div class="section-button">
+                <button class="btn-submit"
+                    type="submit" (click)="Guardar(crudProdService.selectedProduct)">Guardar
                 </button>
 
-                <button class="btn-primary"
+                <button class="btn-submit"
                     (click)="editProduct(crudProdService.selectedProduct)">Actualizar
                 </button>
 
-                <button class="btn-secundary"
+                <button class="btn-submit"
                     type="reset" (click)="resetFor(productForm)"
-                    (click)="resetForm(crudProdService.selectedProduct)">Reset                    
+                    (click)="resetForm(crudProdService.selectedProduct)">Limpiar                   
                 </button>
             </div>
         </form>
     </div>
-</div>
+</section>

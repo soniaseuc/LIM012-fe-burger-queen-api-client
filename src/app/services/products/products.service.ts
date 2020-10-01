@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable, BehaviorSubject, pipe } from 'rxjs';
+import { Order } from './../../interfaces/order';
 
 
 @Injectable({
@@ -43,6 +44,11 @@ export class ProductsService {
   kitchenOrders(): Observable<any> {
     return this.http.get('https://burguerqueen-sc.herokuapp.com/orders');
 
+  }
+  deleteOrder(orders:Order){
+    console.log(`delete orden: ${orders}`);
+    console.log(`delete orden id: ${orders._id}`);
+    return this.http.delete<Order>(`${this.url}orders/${orders._id} `);
   }
 }
 

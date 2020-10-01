@@ -24,9 +24,6 @@ export class UsersComponent implements OnInit {
     .subscribe(data => {
       this.usersArray = data;
     })
-
-   
-     // this.Editar1();
   
   }
 

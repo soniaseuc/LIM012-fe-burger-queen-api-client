@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CounterProductsService } from './../../services/counter-products/counter-products.service';
 import { ProductsService } from './../../services/products/products.service';
 import { Order } from '../../interfaces/order';
+
+import { UsersService } from 'src/app/services/users/users.service';
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -17,6 +19,7 @@ export class OrdersComponent implements OnInit {
   constructor(
     private counterProductService: CounterProductsService,
     private productsService: ProductsService,
+    private userService:UsersService, 
   ) { }
 
   ngOnInit(): void {
@@ -24,21 +27,17 @@ export class OrdersComponent implements OnInit {
       (data: Order[]) => {
       this.orders = data;
       console.log(this.orders);
-
-      /*this.showOrders = {
-        order: data.forEach(element => {
-          console.log(element);
-          const obj = {
-            client: element.client,
-            id: element.id,
-            prod: element.products
-          };
-          console.log(obj.client);
-          console.log(obj.prod[0].name);
-          return obj;
-        }),
-      };*/
+    
     });
+  }
+  Delete(orders: Order){
+    this.productsService.deleteOrder(orders)
+    .subscribe(data => {
+      this.orders = this.orders.filter( p => p !== orders);
+      console.log(orders);
+      console.log(orders._id);
+      alert("Orden eliminada ...");
+    })
   }
  
 }
