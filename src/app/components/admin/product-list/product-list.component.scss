@@ -37,9 +37,10 @@ $negro: #0000;
         }
     
     .table{
-        border-spacing: 10px;
+        border-spacing: 5px;
         font-size: 20px;
         padding-left: 10%;
+        
        
         .letraListadoSub{
             float:right;
@@ -48,6 +49,8 @@ $negro: #0000;
             font-size: 32px;
             color: $blue;
             letter-spacing: 2px;
+           
+           
                 }
                 .borrar{
                     background-color: $yellowTranspa;
@@ -56,5 +59,6 @@ $negro: #0000;
                   .editar{
                     background-color: $yellowTranspa;
                   } 
+                 
           }
 }
