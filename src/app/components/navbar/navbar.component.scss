@@ -1,27 +1,53 @@
 $blue: #071685;
 $blueTranspa: rgba(7, 22, 133, 0.5);
+$yellow: #F7B610;
+$yellowTranspa: rgba(247, 182, 16, 0.5);
 $red:  #E30D2C;
-$whiteTranspa: RGBA(255, 255, 255, 1);
-$yellow : #F7B610;
+$redTranspa: rgba(227, 13, 44, 0.5);
+$gray: #E3DED5;
+$grayTranspa: rgba(227, 222, 213, 0.5);
+$negro: #1A1919;
+$verde: #00C200;
+
+@mixin button($ancho, $alto) {
+  width: $ancho;
+  height: $alto;
+}
+.section-menu{
+  @include button(80px, 35px);
+}
 
 header {
   background: $blue;
   background: $blueTranspa;
   display: flex;
-  flex-direction: row;
+  
   // justify-content: flex-end;
+  .group-button{
+    margin-left: 10%;
+    .section-menu {
+      margin-top: 30%;
+      background: $blue;
+      background: $blueTranspa;
+      border-radius: 20px 20px 0px 0px;
+      border-bottom: none;
+      font-size: large;
+      color: $gray;
+    }
+  }
+  .logout {
+    margin-left: 50%;
+    width: 100px;
+    font-size: 25px;
+    color: $yellow;
+    background-color: rgba(214, 216, 231, 0);
+}
 }
 
-.logout {
-    // display: flex;
-    // margin-left: 510%;
-    // margin-top: 50%;
-    // width: 80px;
-    // height: 62px;
-    font-size: 30px;
-    color: $yellow;
-    background-color: rgba(7, 22, 133, 0);
-}
+
+
+  
+
 
 .user-name {
     // display: flex;

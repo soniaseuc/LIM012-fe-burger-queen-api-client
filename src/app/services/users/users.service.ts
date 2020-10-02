@@ -1,4 +1,5 @@
 import { User } from './../../interfaces/users';
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -41,4 +42,5 @@ export class UsersService {
     console.log(`delete persona id: ${persona._id}`);
     return this.http.delete<User>(`${this.url}users/${persona._id}`);
   }
+
 }
